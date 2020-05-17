@@ -1,17 +1,21 @@
-Type: Package
 Package: mutils
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Imports: 
-    lubridate,
-    rlang (>= 0.1.2)
+Title: Various utility functions to make data processing
+    smoother
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Michael",
+           family = "Barrowman",
+           role = c("aut", "cre"),
+           email = "myko101ab@gmail.com",
+           comment = c(ORCID = "0000-0003-0718-4482"))
+Description: Resource of various utility functions that can
+    assist data analysts and processors to make their work easier
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0.9000
-Suggests: 
-    roxygen2
+Imports: 
+    lubridate,
+    magrittr,
+    tibble
