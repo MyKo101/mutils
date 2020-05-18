@@ -9,9 +9,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "myko101ab@gmail.com",
            comment = c(ORCID = "0000-0003-0718-4482"))
-Description: Resource of various utility functions that can
-    assist data analysts and data processors to make their work easier.
-    Most functions are "nifty" rather than "innovative"
+Description: A resource of various utility functions that can assist data analysts 
+    and data processors to make their work easier; most functions are "nifty" 
+    rather than "innovative".
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -25,5 +25,6 @@ Imports:
     devtools
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    dplyr
 VignetteBuilder: knitr

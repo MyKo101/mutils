@@ -14,6 +14,8 @@
 #' @param ...
 #' arguments to be passed to \code{\link[base]{table}}
 #'
+#' @export
+#'
 #' @examples
 #' tbl <- data.frame(x=c("a","a","b","a","a","b","b","b","a"),
 #'                   y=c("c","d","c","d","c","d","c","d","c"))
