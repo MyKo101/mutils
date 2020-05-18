@@ -10,7 +10,8 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Resource of various utility functions that can
-    assist data analysts and processors to make their work easier
+    assist data analysts and data processors to make their work easier.
+    Most functions are "nifty" rather than "innovative"
 }
 \seealso{
 Useful links:

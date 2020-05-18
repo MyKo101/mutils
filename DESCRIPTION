@@ -21,7 +21,8 @@ Imports:
     lubridate,
     magrittr,
     tibble,
-    purrr
+    purrr,
+    devtools
 Suggests: 
     knitr,
     rmarkdown

@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](https://github.com/MyKo101/mutils/actions)
 <!-- badges: end -->
 
-The goal of mutils is to provide useful functions to make data processing smoother.
+The goal of mutils is to provide useful functions to make data processing smoother. Most functions contained here are "nifty", rather than "innovative".
 
 ## Installation
 

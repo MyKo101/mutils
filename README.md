@@ -10,7 +10,8 @@ status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](http
 <!-- badges: end -->
 
 The goal of mutils is to provide useful functions to make data
-processing smoother.
+processing smoother. Most functions contained here are “nifty”, rather
+than “innovative”.
 
 ## Installation
 
