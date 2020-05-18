@@ -20,11 +20,11 @@ RoxygenNote: 7.1.0.9000
 Imports: 
     lubridate,
     magrittr,
-    tibble,
     purrr,
     devtools
 Suggests: 
     knitr,
     rmarkdown,
+    tibble,
     dplyr
 VignetteBuilder: knitr
