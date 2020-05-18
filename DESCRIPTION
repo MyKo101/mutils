@@ -10,7 +10,8 @@ Authors@R:
            email = "myko101ab@gmail.com",
            comment = c(ORCID = "0000-0003-0718-4482"))
 Description: Resource of various utility functions that can
-    assist data analysts and processors to make their work easier
+    assist data analysts and data processors to make their work easier.
+    Most functions are "nifty" rather than "innovative"
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -19,7 +20,8 @@ RoxygenNote: 7.1.0.9000
 Imports: 
     lubridate,
     magrittr,
-    tibble
+    tibble,
+    purrr
 Suggests: 
     knitr,
     rmarkdown

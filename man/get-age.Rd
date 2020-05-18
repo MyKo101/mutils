@@ -12,8 +12,7 @@ get_age(DOB, Date, leap_March = T)
 birth}
 
 \item{Date}{vector of \code{Date} objects to be used as the date at
-which the age is requested
-#'}
+which the age is requested}
 }
 \description{
 Calculates the age of individuals at a given date,
