@@ -5,14 +5,15 @@
 \alias{get_age}
 \title{Calculates ages}
 \usage{
-get_age(DOB, Date)
+get_age(DOB, Date, leap_March = T)
 }
 \arguments{
 \item{DOB}{vector of \code{Date} objects to be used as the date of
 birth}
 
 \item{Date}{vector of \code{Date} objects to be used as the date at
-which the age is requested}
+which the age is requested
+#'}
 }
 \description{
 Calculates the age of individuals at a given date,

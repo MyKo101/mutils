@@ -2,15 +2,9 @@
 % Please edit documentation in R/logit.R
 \name{logit}
 \alias{logit}
-\alias{odds}
-\alias{unodds}
 \alias{unlogit}
 \title{The logit function}
 \usage{
-odds(p)
-
-unodds(a)
-
 logit(p)
 
 unlogit(a)

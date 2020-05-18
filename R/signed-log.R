@@ -4,15 +4,11 @@
 #' Calculates the signed log of a value
 #'
 #' @description
-#' The standard logarithm (\code{\link[base]{log}}) can takes positive values
-#' as inputs and rescales values that are heavily clustered around low values
-#' (with outliers) and thus helps to Normalise some skewed data.
-#' However, if your data is clustered around zero and also contains both positive and
-#' negative values, the negative values cannot be passed into a logarithm
-#' function. The `signed_log` function will adjust the values slightly to
-#' maintain both the logarithmic-spread of the distribution and the sign.
+#' The signed logarithm allows a pseudo-logarithmic re-scaling to
+#' be performed on data that is both positive and negativeis. It defined as:
 #'
 #' \deqn{ \textrm{signed_log}_b(x) = \textrm{sign}(x)\log_b(|x| + 1)}
+#'
 #'
 #' @param x
 #' a numeric vector.

@@ -2,6 +2,7 @@ Package: mutils
 Title: Various utility functions to make data processing
     smoother
 Version: 0.0.0.9000
+URL: https://michaelbarrowman.co.uk/mutils, https://github.com/MyKo101/mutils
 Authors@R: 
     person(given = "Michael",
            family = "Barrowman",
@@ -19,3 +20,7 @@ Imports:
     lubridate,
     magrittr,
     tibble
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -21,10 +21,31 @@
 #' get_age(birthdays,today())
 #'
 
-get_age <- function(DOB,Date)
+get_age <- function(DOB,Date,leap_March = T)
 {
   requireNamespace("lubridate",quietly=T)
   dT.int <- lubridate::interval(DOB,Date)
   dT.length <- lubridate::time_length(dT.int,unit="year")
   return(floor(dT.length))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
