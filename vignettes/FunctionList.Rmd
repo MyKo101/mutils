@@ -1,5 +1,5 @@
 ---
-title: "FunctionList"
+title: "Function List"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{FunctionList}
