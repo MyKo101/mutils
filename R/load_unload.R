@@ -29,7 +29,10 @@ load_packages <- function(pkgs,...)
   already_installed <- pkgs %in% already_installed_list
 
   if(any(!already_installed))
-    utils::install.packages(pkgs[!already_installed])
+  {
+    tryCatch(utils::install.packages(pkgs[!already_installed]),
+             error=utils::install.packages(pkgs[!already_installed],repos="https://www.stats.bris.ac.uk/R/"))
+  }
 
   purrr::walk(pkgs,library,character.only=T,...)
 
