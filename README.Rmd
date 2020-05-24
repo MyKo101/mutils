@@ -38,6 +38,11 @@ library(mutils)
 
 Overall, this package is just a collection of functions that I've created as a data scientist. It is far from exhaustive, but it contains many of the functions that I find myself using repeatedly. Some are simple formula, some are designed to make processes quicker and some create tidier outputs (to my personal standards). There may be simpler/faster/more obvious ways to do many of the things contained in here, and improvements on speed/efficiency are more than welcome.
 
+## Code of Conduct
+
+Please note that the mutils project is released with a [Contributor Code of Conduct](https://michaelbarrowman.co.uk/mutils/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+
 
 
 

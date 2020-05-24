@@ -1,7 +1,7 @@
 Package: mutils
 Title: Various utility functions to make data processing
     smoother
-Version: 0.0.0.9000
+Version: 0.0.0.9002
 URL: https://michaelbarrowman.co.uk/mutils, https://github.com/MyKo101/mutils
 Authors@R: 
     person(given = "Michael",
@@ -21,11 +21,13 @@ Imports:
     lubridate,
     magrittr,
     purrr,
-    devtools
+    devtools,
+    rlang (>= 0.1.2)
 Suggests: 
     knitr,
     rmarkdown,
-    tibble,
     dplyr,
-    ggplot2
+    ggplot2,
+    tibble,
+    roxygen2
 VignetteBuilder: knitr

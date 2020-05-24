@@ -4,24 +4,34 @@
 \alias{update_my_package}
 \title{Updates current package}
 \usage{
-update_my_package(git_message = NULL, run_check = F)
+update_my_package(
+  git_message = NULL,
+  install = T,
+  run_check = F,
+  update_type = "dev"
+)
 }
 \arguments{
 \item{git_message}{optional. git commit message to be passed to the \code{\link{git}()} function.
 If no \code{message} is provided, then the \code{\link{git}()} function will
-not be ran}
+not be ran.}
+
+\item{install}{logical.should package be re-installed?}
 
 \item{run_check}{logical. Should the package be checked?}
+
+\item{update_type}{what level of update version to use.
+Accepts \code{"major"}, \code{"minor"},\code{"patch"}, or \code{"dev"}. Uses \code{"dev"} as default.}
 }
 \description{
 Performs a few functions to quickly and automatically
-update a package. Only :
+update a package. In general, it performs the following:
 \itemize{
 \item \code{devtools::document()}
 \item \code{rmarkdown::render("README.Rmd")}
 \item \code{devtools::install()}
 \item \code{devtools::load_all()}
 \item \code{devtools::check()} (if requested)
-\item \code{git(message)} (if requested)
+\item \code{git("commit -a <git_message>","push")} (if requested)
 }
 }
