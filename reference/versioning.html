@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculates the signed log of a value — signed_log • mutils</title>
+<title>Functions for versioning of packages — versioning • mutils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,36 @@
 
 
 
-<meta property="og:title" content="Calculates the signed log of a value — signed_log" />
-<meta property="og:description" content="The signed logarithm allows a pseudo-logarithmic re-scaling to
-be performed on data that is both positive and negativeis. It defined as:
-$$ \textrm{signed_log}_b(x) = \textrm{sign}(x)\log_b(|x| + 1)$$" />
+<meta property="og:title" content="Functions for versioning of packages — versioning" />
+<meta property="og:description" content="Performs functions surrounding versioning within packages.
+Get_Version(dir) will extract the current version from the
+DESCRIPTION file in dir.
+
+
+
+Set_Version(dir,Version) will update the DESCRIPTION file in dir.
+
+
+
+Add_Version(Version,type) will increment the version based
+on the level provided (major, minor, patch or dev).
+
+
+
+Update_Version(type) Gets, Adds and Sets a new Version Update
+based on the type of the update.
+
+
+
+Check_Version(Version) Checks if Version is appropriately named version.
+
+
+
+Github_Version_match(user,repo,ref,dir) extracts the current
+version of the github repo, and sets the current version to match.
+Looks for DESCRIPTION at the address:&quot;https://raw.githubusercontent.com/&amp;lt;user&amp;gt;/&amp;lt;repo&amp;gt;/&amp;lt;ref&amp;gt;/&quot;
+
+" />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -130,44 +156,92 @@ $$ \textrm{signed_log}_b(x) = \textrm{sign}(x)\log_b(|x| + 1)$$" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculates the signed log of a value</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/signed_log.R'><code>R/signed_log.R</code></a></small>
-    <div class="hidden name"><code>signed_log.Rd</code></div>
+    <h1>Functions for versioning of packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/versioning.R'><code>R/versioning.R</code></a></small>
+    <div class="hidden name"><code>versioning.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The signed logarithm allows a pseudo-logarithmic re-scaling to
-be performed on data that is both positive and negativeis. It defined as:</p>
-<p>$$ \textrm{signed_log}_b(x) = \textrm{sign}(x)\log_b(|x| + 1)$$</p>
+    <p>Performs functions surrounding versioning within packages.</p><ul>
+<li><p><code>Get_Version(dir)</code> will extract the current version from the
+<code>DESCRIPTION</code> file in <code>dir</code>.</p></li>
+</ul>
+
+<ul>
+<li><p><code>Set_Version(dir,Version)</code> will update the <code>DESCRIPTION</code> file in <code>dir</code>.</p></li>
+</ul>
+
+<ul>
+<li><p><code>Add_Version(Version,type)</code> will increment the version based
+on the level provided (major, minor, patch or dev).</p></li>
+</ul>
+
+<ul>
+<li><p><code>Update_Version(type)</code> Gets, Adds and Sets a new Version Update
+based on the <code>type</code> of the update.</p></li>
+</ul>
+
+<ul>
+<li><p><code>Check_Version(Version)</code> Checks if <code>Version</code> is appropriately named version.</p></li>
+</ul>
+
+<ul>
+<li><p><code>Github_Version_match(user,repo,ref,dir)</code> extracts the current
+version of the github repo, and sets the current version to match.
+Looks for <code>DESCRIPTION</code> at the address:<code>"https://raw.githubusercontent.com/&lt;user&gt;/&lt;repo&gt;/&lt;ref&gt;/"</code></p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>signed_log</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span>))
+    <pre class="usage"><span class='fu'>Get_Version</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)
 
-<span class='fu'>unsigned_log</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span>))</pre>
+<span class='fu'>Set_Version</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>Version</span>)
+
+<span class='fu'>Add_Version</span>(<span class='no'>Version</span>, <span class='no'>type</span>)
+
+<span class='fu'>Update_Version</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>)
+
+<span class='fu'>Check_Version</span>(<span class='no'>Version</span>)
+
+<span class='fu'>Github_Version_match</span>(<span class='no'>user</span>, <span class='kw'>repo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a numeric vector.</p></td>
+      <th>dir</th>
+      <td><p>directory containing the <code>DESCRIPTION</code> file. Can also be
+a web address, such as a github repo</p></td>
     </tr>
     <tr>
-      <th>base</th>
-      <td><p>a positive number</p></td>
+      <th>Version</th>
+      <td><p>an appropriate vector for version numbers. Must be of
+length 4 and the elements mst be named
+<code>"major"</code>, <code>"minor"</code>, <code>"patch"</code> and <code>"dev"</code>, respectively</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>accepts <code>"major"</code>, <code>"minor"</code>, <code>"patch"</code>, <code>"dev"</code> or <code>"none"</code>
+to describe what kind of update to perform. whichever
+type is supplied will be the level that is incremented.
+All lower levels will be reset to 0 (or 9000 for dev).</p></td>
+    </tr>
+    <tr>
+      <th>user</th>
+      <td><p>username for Github lookup</p></td>
+    </tr>
+    <tr>
+      <th>repo</th>
+      <td><p>repository for Github lookup. If NULL, will extract the package name
+from the <code>DESCRIPTION</code> file</p></td>
+    </tr>
+    <tr>
+      <th>ref</th>
+      <td><p>the branch to use as a lookup. Defaults to <code>"master"</code></p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>10</span>,<span class='fl'>10</span>,<span class='fl'>0.01</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>signed_log</span>(<span class='no'>x</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"l"</span>)</div><div class='img'><img src='signed_log-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>x0</span> <span class='kw'>&lt;-</span> <span class='fu'>unsigned_log</span>(<span class='no'>y</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>y</span>,<span class='no'>x0</span>,<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"l"</span>)</div><div class='img'><img src='signed_log-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>,<span class='no'>x0</span>,<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"l"</span>)</div><div class='img'><img src='signed_log-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

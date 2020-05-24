@@ -4,13 +4,19 @@
     <loc>https://michaelbarrowman.co.uk/mutils/index.html</loc>
   </url>
   <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/eval_expr.html</loc>
+  </url>
+  <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/get_age.html</loc>
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/get_rate.html</loc>
   </url>
   <url>
-    <loc>https://michaelbarrowman.co.uk/mutils/reference/git_push.html</loc>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/git.html</loc>
+  </url>
+  <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/has_names.html</loc>
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/load_unload.html</loc>
@@ -25,13 +31,25 @@
     <loc>https://michaelbarrowman.co.uk/mutils/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/rep_list.html</loc>
+  </url>
+  <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/signed_log.html</loc>
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/table.html</loc>
   </url>
   <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/tidyeval.html</loc>
+  </url>
+  <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/time_overlap.html</loc>
+  </url>
+  <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/update_my_package.html</loc>
+  </url>
+  <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/versioning.html</loc>
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/articles/Function_Backgrounds.html</loc>

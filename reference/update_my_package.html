@@ -48,13 +48,13 @@
 
 <meta property="og:title" content="Updates current package — update_my_package" />
 <meta property="og:description" content="Performs a few functions to quickly and automatically
-update a package. Only :
+update a package. In general, it performs the following:
 devtools::document()
 rmarkdown::render(&quot;README.Rmd&quot;)
 devtools::install()
 devtools::load_all()
 devtools::check() (if requested)
-git(message) (if requested)
+git(&quot;commit -a &amp;lt;git_message&amp;gt;&quot;,&quot;push&quot;) (if requested)
 
 " />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
@@ -89,7 +89,7 @@ git(message) (if requested)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -144,31 +144,45 @@ git(message) (if requested)
 
     <div class="ref-description">
     <p>Performs a few functions to quickly and automatically
-update a package. Only :</p><ul>
+update a package. In general, it performs the following:</p><ul>
 <li><p><code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code></p></li>
 <li><p><code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>rmarkdown::render("README.Rmd")</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/install.html'>devtools::install()</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/load_all.html'>devtools::load_all()</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> (if requested)</p></li>
-<li><p><code><a href='git_push.html'>git(message)</a></code> (if requested)</p></li>
+<li><p><code><a href='git.html'>git("commit -a &lt;git_message&gt;","push")</a></code> (if requested)</p></li>
 </ul>
 
     </div>
 
-    <pre class="usage"><span class='fu'>update_my_package</span>(<span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>run_check</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>update_my_package</span>(
+  <span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>install</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>run_check</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>git_message</th>
-      <td><p>optional. git commit message to be passed to the <code><a href='git_push.html'>git</a>()</code> function.
-If no <code>message</code> is provided, then the <code><a href='git_push.html'>git</a>()</code> function will
-not be ran</p></td>
+      <td><p>optional. git commit message to be passed to the <code><a href='git.html'>git</a>()</code> function.
+If no <code>message</code> is provided, then the <code><a href='git.html'>git</a>()</code> function will
+not be ran.</p></td>
+    </tr>
+    <tr>
+      <th>install</th>
+      <td><p>logical.should package be re-installed?</p></td>
     </tr>
     <tr>
       <th>run_check</th>
       <td><p>logical. Should the package be checked?</p></td>
+    </tr>
+    <tr>
+      <th>update_type</th>
+      <td><p>what level of update version to use.
+Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <code>"dev"</code>. Uses <code>"dev"</code> as default.</p></td>
     </tr>
     </table>
 
