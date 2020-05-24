@@ -32,7 +32,7 @@
 #' @export
 #'
 
-update_my_package <- function(git_message = NULL,install=T,run_check = F,update_type="dev")
+update_my_package <- function(git_message = NULL, install=T, run_check = F, update_type="dev")
 {
   c_env <- environment()
   c_parent <- parent.env(c_env)
@@ -72,9 +72,14 @@ update_my_package <- function(git_message = NULL,install=T,run_check = F,update_
 
     if(!any_reports && !is.null(git_message))
     {
-      Update_Version(type=update_type)
-      git_commit <- paste0("commit -a -m \"",git_message,"\"")
-      git(git_commit,"push")
+      versions <- Update_Version(type=update_type)
+      versions_chr <- sapply(versions,paste,collapse=".")
+      cat("trying to update from",versions_chr["old"],
+          "to",versions_chr["new"])
+      tryCatch({
+        git_commit <- paste0("commit -a -m \"",git_message,"\"")
+        git(git_commit,"push")
+      }, error=Set_Version(Version=versions$old))
     }
   }
 
