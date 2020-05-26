@@ -8,20 +8,26 @@ update_my_package(
   git_message = NULL,
   install = T,
   run_check = F,
-  update_type = "dev"
+  update_type = "dev",
+  ignore_notes = F
 )
 }
 \arguments{
-\item{git_message}{optional. git commit message to be passed to the \code{\link{git}()} function.
-If no \code{message} is provided, then the \code{\link{git}()} function will
-not be ran.}
+\item{git_message}{git commit message to be passed to the \code{git()} function.
+If no \code{git_message} is provided, then the update will not be commited. If
+\code{git_message} is supplied, then \code{devtools::check()} will be ran first.
+\code{git()} will not be ran if \code{check()} returns that there is something wrong
+with the package.}
 
-\item{install}{logical.should package be re-installed?}
+\item{install}{should package be re-installed?}
 
-\item{run_check}{logical. Should the package be checked?}
+\item{run_check}{should the package be checked?}
 
 \item{update_type}{what level of update version to use.
 Accepts \code{"major"}, \code{"minor"},\code{"patch"}, or \code{"dev"}. Uses \code{"dev"} as default.}
+
+\item{ignore_notes}{should the Notes returned by running \code{devtools::check()} be ignored?
+(Errors and Warnings are never ignored)}
 }
 \description{
 Performs a few functions to quickly and automatically

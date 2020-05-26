@@ -135,7 +135,7 @@ Check_Version <- function(Version)
 #' Looks for `DESCRIPTION` at the address:`"https://raw.githubusercontent.com/<user>/<repo>/<ref>/"`
 #'
 #' @export
-Github_Version_match <- function(user,repo=NULL,ref="master",dir=".")
+Match_Version_Github <- function(user,repo=NULL,ref="master",dir=".")
 {
   if(is.null(repo))
   {
@@ -149,6 +149,6 @@ Github_Version_match <- function(user,repo=NULL,ref="master",dir=".")
   basedir <- "https://raw.githubusercontent.com/"
   dir <- paste(basedir,user,repo,ref,sep="/")
   GH_Version <- Get_Version(dir)
-  Set_Version(dir = dir)
+  Set_Version(dir = dir,Version = GH_Version)
 }
 

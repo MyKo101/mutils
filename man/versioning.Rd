@@ -7,7 +7,7 @@
 \alias{Add_Version}
 \alias{Update_Version}
 \alias{Check_Version}
-\alias{Github_Version_match}
+\alias{Match_Version_Github}
 \title{Functions for versioning of packages}
 \usage{
 Get_Version(dir = ".")
@@ -20,7 +20,7 @@ Update_Version(dir = ".", type = "dev")
 
 Check_Version(Version)
 
-Github_Version_match(user, repo = NULL, ref = "master", dir = ".")
+Match_Version_Github(user, repo = NULL, ref = "master", dir = ".")
 }
 \arguments{
 \item{dir}{directory containing the \code{DESCRIPTION} file. Can also be

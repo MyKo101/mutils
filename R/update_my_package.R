@@ -14,25 +14,32 @@
 #' * `devtools::check()` (if requested)
 #' * `git("commit -a <git_message>","push")` (if requested)
 #'
+#'
 #' @param git_message
-#' optional. git commit message to be passed to the \code{\link{git}()} function.
-#' If no \code{message} is provided, then the \code{\link{git}()} function will
-#' not be ran.
+#' git commit message to be passed to the `git()` function.
+#' If no `git_message` is provided, then the update will not be commited. If
+#' `git_message` is supplied, then `devtools::check()` will be ran first.
+#' `git()` will not be ran if `check()` returns that there is something wrong
+#' with the package.
 #'
 #' @param install
-#' logical.should package be re-installed?
+#' should package be re-installed?
 #'
 #' @param run_check
-#' logical. Should the package be checked?
+#' should the package be checked?
 #'
 #' @param update_type
 #' what level of update version to use.
 #' Accepts `"major"`, `"minor"`,`"patch"`, or `"dev"`. Uses `"dev"` as default.
 #'
+#' @param ignore_notes
+#' should the Notes returned by running `devtools::check()` be ignored?
+#' (Errors and Warnings are never ignored)
+#'
 #' @export
 #'
 
-update_my_package <- function(git_message = NULL, install=T, run_check = F, update_type="dev")
+update_my_package <- function(git_message = NULL, install=T, run_check = F, update_type="dev", ignore_notes=F)
 {
   c_env <- environment()
   c_parent <- parent.env(c_env)
@@ -65,9 +72,17 @@ update_my_package <- function(git_message = NULL, install=T, run_check = F, upda
     {
       check_results <- devtools::check()
       print(check_results)
-      any_reports <- (length(check_results$errors) >0) ||
-        (length(check_results$warnings) >0) ||
-        (length(check_results$notes) >0)
+      if(ignore_notes)
+      {
+        any_reports <- (length(check_results$errors) >0) ||
+          (length(check_results$warnings) >0)
+      } else
+      {
+        any_reports <- (length(check_results$errors) >0) ||
+          (length(check_results$warnings) >0) ||
+          (length(check_results$notes) >0)
+
+      }
     } else any_reports <- F
 
     if(!any_reports && !is.null(git_message))
