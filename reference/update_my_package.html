@@ -159,7 +159,8 @@ update a package. In general, it performs the following:</p><ul>
   <span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>install</span> <span class='kw'>=</span> <span class='no'>T</span>,
   <span class='kw'>run_check</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>
+  <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>,
+  <span class='kw'>ignore_notes</span> <span class='kw'>=</span> <span class='no'>F</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -167,22 +168,29 @@ update a package. In general, it performs the following:</p><ul>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>git_message</th>
-      <td><p>optional. git commit message to be passed to the <code><a href='git.html'>git</a>()</code> function.
-If no <code>message</code> is provided, then the <code><a href='git.html'>git</a>()</code> function will
-not be ran.</p></td>
+      <td><p>git commit message to be passed to the <code><a href='git.html'>git()</a></code> function.
+If no <code>git_message</code> is provided, then the update will not be commited. If
+<code>git_message</code> is supplied, then <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> will be ran first.
+<code><a href='git.html'>git()</a></code> will not be ran if <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code> returns that there is something wrong
+with the package.</p></td>
     </tr>
     <tr>
       <th>install</th>
-      <td><p>logical.should package be re-installed?</p></td>
+      <td><p>should package be re-installed?</p></td>
     </tr>
     <tr>
       <th>run_check</th>
-      <td><p>logical. Should the package be checked?</p></td>
+      <td><p>should the package be checked?</p></td>
     </tr>
     <tr>
       <th>update_type</th>
       <td><p>what level of update version to use.
 Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <code>"dev"</code>. Uses <code>"dev"</code> as default.</p></td>
+    </tr>
+    <tr>
+      <th>ignore_notes</th>
+      <td><p>should the Notes returned by running <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> be ignored?
+(Errors and Warnings are never ignored)</p></td>
     </tr>
     </table>
 
