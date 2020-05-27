@@ -45,3 +45,6 @@
 #' @aliases expr enquo enquos sym syms .data .env := as_name as_label
 #' @export expr enquo enquos sym syms .data .env := as_name as_label
 NULL
+
+#' @rdname tidyeval
+. <- .data
