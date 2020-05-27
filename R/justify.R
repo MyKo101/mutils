@@ -32,6 +32,7 @@ justify <- function(x,...)
 #' @param d
 #' explicit number of decimal places.
 #'
+#'
 #' @examples
 #' rnd <- 10^(runif(100,-2,8))
 #' rnd <- rnd*runif(100,-1,1)
@@ -50,6 +51,7 @@ justify.numeric <- function(x,d=3,...)
   }
 
   x <- as.double(x)
+  x <- round(x,d)
 
   s <- sign(x)
   x0 <- abs(x)
@@ -85,8 +87,8 @@ justify.numeric <- function(x,d=3,...)
       magrittr::mod(1) %>%
       magrittr::multiply_by(10^d) %>%
       round() %>%
-      justify(d=0) %>%
-      gsub(" ","0",.) %>%
+      paste0(strrep("0",d),.) %>%
+      substring(nchar(.)-d+1,nchar(.)) %>%
       paste0(".",.) %>%
       ifelse(infs|NAs,strrep(" ",d+1),.)
 
@@ -198,24 +200,23 @@ justify.logical <- function(x,form="short",case="upper",align="left",na.rm=TRUE,
 
   lookup <- tibble::tribble(
     ~form, ~case, ~align,    ~tru,    ~fal,      ~N,
-      "s",   "u",    "l",     "T",     "F",     "N",
-      "s",   "l",    "l",     "t",     "f",     "n",
-      "l",   "u",    "l", "TRUE ", "FALSE", "NA   ",
-      "l",   "u",    "r", " TRUE", "FALSE", "   NA",
-      "l",   "u",    "c", "TRUE ", "FALSE", " NA  ",
-      "l",   "l",    "l", "true ", "false", "na   ",
-      "l",   "l",    "r", " true", "false", "   na",
-      "l",   "l",    "c", "true ", "false", " na  ",
-      "l",   "c",    "l", "True ", "False", "Na   ",
-      "l",   "c",    "r", " True", "False", "   Na",
-      "l",   "c",    "r", "True ", "False", " Na  ",
-      "n",   "u",    "l",     "1",     "0",     " "
+    "s",   "u",    "l",     "T",     "F",     "N",
+    "s",   "l",    "l",     "t",     "f",     "n",
+    "l",   "u",    "l", "TRUE ", "FALSE", "NA   ",
+    "l",   "u",    "r", " TRUE", "FALSE", "   NA",
+    "l",   "u",    "c", "TRUE ", "FALSE", " NA  ",
+    "l",   "l",    "l", "true ", "false", "na   ",
+    "l",   "l",    "r", " true", "false", "   na",
+    "l",   "l",    "c", "true ", "false", " na  ",
+    "l",   "c",    "l", "True ", "False", "Na   ",
+    "l",   "c",    "r", " True", "False", "   Na",
+    "l",   "c",    "r", "True ", "False", " Na  ",
+    "n",   "u",    "l",     "1",     "0",     " "
   )
 
-  set <- lookup %>%
-    dplyr::filter(.data$form == .env$form &
-                    .data$case == .env$case &
-                    .data$align == .env$align)
+  set <- dplyr::filter(lookup,.data$form == .env$form &
+                         .data$case == .env$case &
+                         .data$align == .env$align)
 
   if(na.rm==T) set$N <- strrep(" ",nchar(set$tru))
 

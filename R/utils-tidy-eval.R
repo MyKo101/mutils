@@ -46,5 +46,8 @@
 #' @export expr enquo enquos sym syms .data .env := as_name as_label
 NULL
 
-#' @rdname tidyeval
-. <- .data
+#' @rdname
+#' @export
+
+. <- structure(list(), class = "rlang_fake_data_pronoun")
+
