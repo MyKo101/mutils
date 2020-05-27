@@ -64,7 +64,7 @@ justify.numeric <- function(x,d=3,...)
     gsub("(.{3})", "\\1,", .) %>%
     gsub(",$","",.) %>%
     stringi::stri_reverse(.) %>%
-    ifelse(s==-1,paste0("-",.data),.)
+    ifelse(s==-1,paste0("-",.),.)
 
   f <- max(nchar(x_chr_comma))
 
