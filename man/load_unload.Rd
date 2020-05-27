@@ -4,11 +4,14 @@
 \alias{load_unload}
 \alias{load_packages}
 \alias{unload_packages}
+\alias{reload_packages}
 \title{Load or Unload packages}
 \usage{
 load_packages(pkgs, ...)
 
 unload_packages(pkgs, ...)
+
+reload_packages(pkgs, ...)
 }
 \arguments{
 \item{pkgs}{character list of package names}
@@ -23,6 +26,8 @@ Then loads them ready for use. \code{unload_packages} unloads packages, see \cod
 \dontrun{
 load_packages(c("dplyr","tibble"))
 unload_packages(c("dplyr","tibble"))
+
+reload_packages(c("dplyr","tibble"))
 }
 
 }

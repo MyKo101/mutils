@@ -38,6 +38,6 @@ update a package. In general, it performs the following:
 \item \code{devtools::install()}
 \item \code{devtools::load_all()}
 \item \code{devtools::check()} (if requested)
-\item \code{git("commit -a <git_message>","push")} (if requested)
+\item \code{git("add -A","commit -a -m <git_message>","push")} (if requested)
 }
 }

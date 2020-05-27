@@ -64,7 +64,7 @@ justify.numeric <- function(x,d=3,...)
     gsub("(.{3})", "\\1,", .) %>%
     gsub(",$","",.) %>%
     stringi::stri_reverse(.) %>%
-    ifelse(s==-1,paste0("-",.),.)
+    ifelse(s==-1,paste0("-",.data),.)
 
   f <- max(nchar(x_chr_comma))
 
@@ -103,142 +103,139 @@ justify.numeric <- function(x,d=3,...)
 #' @rdname justify
 #' @export
 #'
-#' @description
-#' For characters, inserts a `newline` between words when
-#' the text overflows above the `width`. Whitespace is used to
-#' fill in space around text to ensure correct alignment.
-#' Note that in this context, only spaces, `" "`, can separate
-#' words. This means that, in general, punctuation is considered to
-#' be part of the word before it (e.g. `"test."` is a
-#' five-letter word and `"five-letter"` is an eleven-letter word)
-#'
-#' @param width
-#' number of characters before a `newline` is inserted.
-#'
 #' @param align
 #' `"left"`, `"right"` or `"centre"` (or just `"l"`, `"r"` or `"c"`)
 #' to indicate which alignment to apply.
 #'
-#' @param newline
-#' character string to insert as a newline notation.
+#' @param na.rm
+#' should `NA`s (or `NaN`s) be kept
 #'
 #' @examples
 #' set.seed(1)
 #' all_cols <- colours()
 #' all_cols <- unique(gsub("[0-9]","",all_cols))
-#' smp_cols <- sample(all_cols,30)
-#' smp_cols <- paste0(smp_cols,collapse=", ")
-#' just_cols <- justify(smp_cols,width=40,align="centre")
+#' smp_cols <- sample(all_cols,20)
+#' justify(smp_cols,align="centre")
 #'
-#' cat(just_cols)
-#'
-#' just_cols_html <- justify(smp_cols,width=50,align="r",newline="<br>")
-#' cat(just_cols_html)
 #'
 
-justify.character <- function(x,width,align = "left",newline="\n",...)
+justify.character <- function(x,align = "left",na.rm=TRUE,...)
 {
-  align <- substr(align,1,1)
+  align <- tolower(substr(align,1,1))
 
-  x_all <- gsub(newline," ",paste0(x,collapse=" "))
-  x_all_split <- strsplit(x_all," ")[[1]]
-  x_all_nchar <- nchar(x_all_split)
 
-  if(max(x_all_nchar) > width)
+  if(na.rm)
   {
-    long_word <- x_all_split[which.max(x_all_nchar)[1]]
-    abort_message <- paste0("x contains the word \"",
-                            long_word,"\" which is considered a ",
-                            max(x_all_nchar),"-letter word.",
-                            " The requested width is only ", width,".",
-                            " Try a different width, or using gsub() to ",
-                            "replace characters with \" \" to break this up.")
-    rlang::abort(abort_message)
+    x[is.na(x)|is.nan(x)] <- ""
+  } else
+  {
+    x[is.na(x)|is.nan(x)] <- "NA"
   }
 
 
-  x_split <- lapply(x,justify_character_single,width=width,newline=newline)
+  width <- max(nchar(x),na.rm=TRUE)
+  extra_chars <- width - nchar(x)
 
 
-  extra_chars <- lapply(x_split,
-                        . %>%
-                          nchar %>%
-                          magrittr::subtract(width,.))
 
   if(align == "l")
   {
-    right_chars <- extra_chars
-    left_chars <- lapply(extra_chars,
-                          . %>% magrittr::multiply_by(0))
-  }
-
-  if(align == "r")
+    res <- paste0(x,strrep(" ",extra_chars))
+  } else if(align == "r")
   {
-    left_chars <- extra_chars
-    right_chars <- lapply(extra_chars,
-                          . %>% magrittr::multiply_by(0))
-  }
-
-  if(align == "c")
+    res <- paste0(strrep(" ",extra_chars),x)
+  } else if(align=="c")
   {
-    left_chars <- lapply(extra_chars,
-                         . %>%
-                           magrittr::divide_by(2) %>%
-                           floor)
-    right_chars <- lapply(1:length(extra_chars),
-                          function(i) extra_chars[[i]] - left_chars[[i]])
+    left_chars <- floor(extra_chars/2)
+    right_chars <- extra_chars - left_chars
+    res <- paste0(strrep(" ",left_chars),x,
+                  strrep(" ",right_chars))
   }
-
-  left_whitespace <- lapply(left_chars,strrep,x=" ")
-  right_whitespace <- lapply(right_chars,strrep,x=" ")
-
-  res_list <- lapply(1:length(x_split),
-         function(i) paste0(left_whitespace[[i]],
-                            x_split[[i]],
-                            right_whitespace[[i]]))
-
-  res <- sapply(res_list,paste,collapse=newline)
-
   res
 
 }
 
-justify_character_single <- function(x,width,newline)
+#' @rdname justify
+#' @export
+#'
+#' @param form
+#' should logical be printed in `"long"` format (`"TRUE"` and `"FALSE"`),
+#' `"short"` format (`"T"` or `"F"`) or
+#' `"numeric"` format (`"1"` or `"0"`)
+#'
+#' @param case
+#' should output be `"upper"` (e.g. `"TRUE"`),
+#' `"lower"` (e.g. `"false"`) or `"capitalised"` (e.g. `"True"`)
+#'
+#'
+#' @examples
+#'
+#' x <- c(TRUE,FALSE,NA)
+#'
+#' justify(x)
+#' justify(x,"long","lower","right")
+#' justify(x,form="long",align="centre")
+#' justify(x,form="numeric")
+#' justify(x,na.rm=TRUE)
+#'
+#'
+
+justify.logical <- function(x,form="short",case="upper",align="left",na.rm=TRUE,...)
 {
-  if(grepl(newline,x))
+  form <- tolower(substring(form,1,1))
+  case <- tolower(substring(case,1,1))
+  align <- tolower(substring(align,1,1))
+
+  if(form == "s")
   {
-    x_split <- strsplit(x,newline)[[1]]
-
-    res_list <- lapply(x_split,justify_character_single,width=width,newline=newline)
-
-    unlist(res_list)
-
-  } else
+    align <- "l"
+    if(case == "c") case <- "u"
+  } else if(form == "n")
   {
-
-    df <- tibble::tibble(split = strsplit(x," ")[[1]]) %>%
-      dplyr::mutate(nchar = nchar(split),
-                    grp = 1) %>%
-      dplyr::group_by(grp) %>%
-      dplyr::mutate(cumulative = cumsum(nchar) + dplyr::row_number()-1) %>%
-      dplyr::ungroup()
-
-    while(any(df$cumulative >= width))
-    {
-      df <- df %>%
-        dplyr::mutate(grp = grp + (cumulative>=width)) %>%
-        dplyr::group_by(grp) %>%
-        dplyr::mutate(cumulative = cumsum(nchar) + dplyr::row_number()-1) %>%
-        dplyr::ungroup()
-    }
-
-    df %>%
-      dplyr::group_by(grp) %>%
-      dplyr::summarise(res = paste(split,collapse=" ")) %>%
-      dplyr::mutate(nchar = nchar(res)) %>%
-      dplyr::pull(res)
+    case <- "u"
+    align <- "l"
   }
+
+  lookup <- tibble::tribble(
+    ~form, ~case, ~align,    ~tru,    ~fal,      ~N,
+      "s",   "u",    "l",     "T",     "F",     "N",
+      "s",   "l",    "l",     "t",     "f",     "n",
+      "l",   "u",    "l", "TRUE ", "FALSE", "NA   ",
+      "l",   "u",    "r", " TRUE", "FALSE", "   NA",
+      "l",   "u",    "c", "TRUE ", "FALSE", " NA  ",
+      "l",   "l",    "l", "true ", "false", "na   ",
+      "l",   "l",    "r", " true", "false", "   na",
+      "l",   "l",    "c", "true ", "false", " na  ",
+      "l",   "c",    "l", "True ", "False", "Na   ",
+      "l",   "c",    "r", " True", "False", "   Na",
+      "l",   "c",    "r", "True ", "False", " Na  ",
+      "n",   "u",    "l",     "1",     "0",     " "
+  )
+
+  set <- lookup %>%
+    dplyr::filter(.data$form == .env$form &
+                    .data$case == .env$case &
+                    .data$align == .env$align)
+
+  if(na.rm==T) set$N <- strrep(" ",nchar(set$tru))
+
+  y <- rep("",length(x))
+  y[is.na(x)|is.nan(x)] <- set$N
+  y[x] <- set$tru
+  y[!x] <- set$fal
+
+  y
+
 }
+
+
+
+
+
+
+
+
+
 
 
 

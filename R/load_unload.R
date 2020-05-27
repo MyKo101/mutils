@@ -19,6 +19,8 @@
 #' \dontrun{
 #' load_packages(c("dplyr","tibble"))
 #' unload_packages(c("dplyr","tibble"))
+#'
+#' reload_packages(c("dplyr","tibble"))
 #' }
 #'
 
@@ -48,6 +50,15 @@ unload_packages <- function(pkgs,...)
 
   purrr::walk(pkgs,detach,character.only=T,unload=T,...)
 
+}
+
+
+#' @rdname load_unload
+#' @export
+reload_packages <- function(pkgs,...)
+{
+  unload_packages(pkgs,...)
+  load_packages(pkgs,...)
 }
 
 

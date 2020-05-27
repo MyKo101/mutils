@@ -4,13 +4,16 @@
 \alias{justify}
 \alias{justify.numeric}
 \alias{justify.character}
+\alias{justify.logical}
 \title{Sets alignment of object, ready for printing}
 \usage{
 justify(x, ...)
 
 \method{justify}{numeric}(x, d = 3, ...)
 
-\method{justify}{character}(x, width, align = "left", newline = "\\n", ...)
+\method{justify}{character}(x, align = "left", na.rm = TRUE, ...)
+
+\method{justify}{logical}(x, form = "short", case = "upper", align = "left", na.rm = TRUE, ...)
 }
 \arguments{
 \item{x}{object to be justified}
@@ -19,12 +22,17 @@ justify(x, ...)
 
 \item{d}{explicit number of decimal places.}
 
-\item{width}{number of characters before a \code{newline} is inserted.}
-
 \item{align}{\code{"left"}, \code{"right"} or \code{"centre"} (or just \code{"l"}, \code{"r"} or \code{"c"})
 to indicate which alignment to apply.}
 
-\item{newline}{character string to insert as a newline notation.}
+\item{na.rm}{should \code{NA}s (or \code{NaN}s) be kept}
+
+\item{form}{should logical be printed in \code{"long"} format (\code{"TRUE"} and \code{"FALSE"}),
+\code{"short"} format (\code{"T"} or \code{"F"}) or
+\code{"numeric"} format (\code{"1"} or \code{"0"})}
+
+\item{case}{should output be \code{"upper"} (e.g. \code{"TRUE"}),
+\code{"lower"} (e.g. \code{"false"}) or \code{"capitalised"} (e.g. \code{"True"})}
 }
 \description{
 Applies formatting to an object to align it appropriately.
@@ -35,14 +43,6 @@ will be taken as the exact number of decimal places. Many other number formattin
 functions take arguments as "suggestions" only (e.g. \code{options("digits")}) or
 use multiple ways of defining length of output
 (e.g. significant figures and decimal places concurrently)
-
-For characters, inserts a \code{newline} between words when
-the text overflows above the \code{width}. Whitespace is used to
-fill in space around text to ensure correct alignment.
-Note that in this context, only spaces, \code{" "}, can separate
-words. This means that, in general, punctuation is considered to
-be part of the word before it (e.g. \code{"test."} is a
-five-letter word and \code{"five-letter"} is an eleven-letter word)
 }
 \examples{
 rnd <- 10^(runif(100,-2,8))
@@ -52,13 +52,18 @@ justify(rnd,2)
 set.seed(1)
 all_cols <- colours()
 all_cols <- unique(gsub("[0-9]","",all_cols))
-smp_cols <- sample(all_cols,30)
-smp_cols <- paste0(smp_cols,collapse=", ")
-just_cols <- justify(smp_cols,width=40,align="centre")
+smp_cols <- sample(all_cols,20)
+justify(smp_cols,align="centre")
 
-cat(just_cols)
 
-just_cols_html <- justify(smp_cols,width=50,align="r",newline="<br>")
-cat(just_cols_html)
+
+x <- c(TRUE,FALSE,NA)
+
+justify(x)
+justify(x,"long","lower","right")
+justify(x,form="long",align="centre")
+justify(x,form="numeric")
+justify(x,na.rm=TRUE)
+
 
 }

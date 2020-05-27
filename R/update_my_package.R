@@ -12,7 +12,7 @@
 #' * `devtools::install()`
 #' * `devtools::load_all()`
 #' * `devtools::check()` (if requested)
-#' * `git("commit -a <git_message>","push")` (if requested)
+#' * `git("add -A","commit -a -m <git_message>","push")` (if requested)
 #'
 #'
 #' @param git_message
@@ -90,10 +90,10 @@ update_my_package <- function(git_message = NULL, install=T, run_check = F, upda
       versions <- Update_Version(type=update_type)
       versions_chr <- sapply(versions,paste,collapse=".")
       cat("trying to update from",versions_chr["old"],
-          "to",versions_chr["new"])
+          "to",versions_chr["new"],"\n")
       tryCatch({
         git_commit <- paste0("commit -a -m \"",git_message,"\"")
-        git(git_commit,"push")
+        git("add -A",git_commit,"push")
       }, error=Set_Version(Version=versions$old))
     }
   }
