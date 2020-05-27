@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Does an object have names? — has_names • mutils</title>
+<title>Checks if a string is blank — is_blank • mutils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,8 @@
 
 
 
-<meta property="og:title" content="Does an object have names? — has_names" />
-<meta property="og:description" content="Checks to see if object x has names
-assciated with it" />
+<meta property="og:title" content="Checks if a string is blank — is_blank" />
+<meta property="og:description" content="Checks if a character string is made up of only spaces" />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -129,33 +128,30 @@ assciated with it" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Does an object have names?</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/has_names.R'><code>R/has_names.R</code></a></small>
-    <div class="hidden name"><code>has_names.Rd</code></div>
+    <h1>Checks if a string is blank</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/is_blank.R'><code>R/is_blank.R</code></a></small>
+    <div class="hidden name"><code>is_blank.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Checks to see if object x has <code>names</code>
-assciated with it</p>
+    <p>Checks if a character string is made up of only spaces</p>
     </div>
 
-    <pre class="usage"><span class='fu'>has_names</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>is_blank</span>(<span class='no'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>object to be checked</p></td>
+      <td><p>character vector to be checked for blank-ness</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>has_names</span>(<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>has_names</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>y</span><span class='kw'>=</span><span class='fl'>3</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='no'>iris2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span>(<span class='no'>iris</span>,<span class='kw'>NULL</span>)
-<span class='fu'>has_names</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>has_names</span>(<span class='no'>iris2</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>,<span class='st'>"blue green"</span>,<span class='st'>"  "</span>,<span class='st'>" "</span>,<span class='st'>""</span>,<span class='st'>"yellow"</span>)
+<span class='fu'>is_blank</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

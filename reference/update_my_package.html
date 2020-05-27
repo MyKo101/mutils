@@ -54,7 +54,7 @@ rmarkdown::render(&quot;README.Rmd&quot;)
 devtools::install()
 devtools::load_all()
 devtools::check() (if requested)
-git(&quot;commit -a &amp;lt;git_message&amp;gt;&quot;,&quot;push&quot;) (if requested)
+git(&quot;add -A&quot;,&quot;commit -a -m &amp;lt;git_message&amp;gt;&quot;,&quot;push&quot;) (if requested)
 
 " />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
@@ -89,7 +89,7 @@ git(&quot;commit -a &amp;lt;git_message&amp;gt;&quot;,&quot;push&quot;) (if requ
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -150,7 +150,7 @@ update a package. In general, it performs the following:</p><ul>
 <li><p><code><a href='https://devtools.r-lib.org//reference/install.html'>devtools::install()</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/load_all.html'>devtools::load_all()</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> (if requested)</p></li>
-<li><p><code><a href='git.html'>git("commit -a &lt;git_message&gt;","push")</a></code> (if requested)</p></li>
+<li><p><code><a href='git.html'>git("add -A","commit -a -m &lt;git_message&gt;","push")</a></code> (if requested)</p></li>
 </ul>
 
     </div>

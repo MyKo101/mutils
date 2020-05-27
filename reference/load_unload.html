@@ -81,7 +81,7 @@ Then loads them ready for use. unload_packages unloads packages, see detach" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -141,7 +141,9 @@ Then loads them ready for use. <code>unload_packages</code> unloads packages, se
 
     <pre class="usage"><span class='fu'>load_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)
 
-<span class='fu'>unload_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>unload_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)
+
+<span class='fu'>reload_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +163,8 @@ Then loads them ready for use. <code>unload_packages</code> unloads packages, se
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>load_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
 <span class='fu'>unload_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
+
+<span class='fu'>reload_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
