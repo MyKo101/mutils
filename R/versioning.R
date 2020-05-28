@@ -129,25 +129,47 @@ Check_Version <- function(Version)
 #' @param ref
 #' the branch to use as a lookup. Defaults to `"master"`
 #'
+#' @param git_dir
+#' directory for the github repo. Can be found by using
+#'
+#'
 #' @description
 #' * `Github_Version_match(user,repo,ref,dir)` extracts the current
 #' version of the github repo, and sets the current version to match.
 #' Looks for `DESCRIPTION` at the address:`"https://raw.githubusercontent.com/<user>/<repo>/<ref>/"`
 #'
 #' @export
-Match_Version_Github <- function(user,repo=NULL,ref="master",dir=".")
+Match_Version_Github <- function(user=NULL,repo=NULL,ref="master",git_dir=NULL,dir=".")
 {
-  if(is.null(repo))
+  if(is.null(user) & is.null(git_dir))
   {
-    Desc_file <- readLines(paste0(dir,"/DESCRIPTION"))
-    Package_row <- grep("^Package:",Desc_file)
-    Package_raw <- Desc_file[Package_row]
-    Package_name <- trimws(gsub("^Package: ","",Package_raw))
-    repo <- Package_name
+    rlang::abort("Either git_dir or user must be supplied")
+  } else if(is.null(git_dir))
+  {
+    if(is.null(repo))
+    {
+      Desc_file <- readLines(paste0(dir,"/DESCRIPTION"))
+      Package_row <- grep("^Package:",Desc_file)
+      Package_raw <- Desc_file[Package_row]
+      Package_name <- trimws(gsub("^Package: ","",Package_raw))
+      repo <- Package_name
+    }
+  } else {
+    git_dir_split <- strsplit(git_dir,"[/.]")[[1]]
+    user <- git_dir_split[5]
+    repo <- git_dir_split[6]
+    if(length(git_dir_split) == 9)
+    {
+      ref <- git_dir_split[8]
+    } else
+    {
+      ref <- "master"
+    }
   }
 
   basedir <- "https://raw.githubusercontent.com/"
   dir <- paste(basedir,user,repo,ref,sep="/")
+
   GH_Version <- Get_Version(dir)
   Set_Version(dir = dir,Version = GH_Version)
 }

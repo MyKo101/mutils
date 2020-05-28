@@ -12,6 +12,7 @@
 \alias{:=}
 \alias{as_name}
 \alias{as_label}
+\alias{.}
 \title{Tidy eval helpers}
 \description{
 \itemize{

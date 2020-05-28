@@ -20,7 +20,13 @@ Update_Version(dir = ".", type = "dev")
 
 Check_Version(Version)
 
-Match_Version_Github(user, repo = NULL, ref = "master", dir = ".")
+Match_Version_Github(
+  user = NULL,
+  repo = NULL,
+  ref = "master",
+  git_dir = NULL,
+  dir = "."
+)
 }
 \arguments{
 \item{dir}{directory containing the \code{DESCRIPTION} file. Can also be
@@ -41,6 +47,8 @@ All lower levels will be reset to 0 (or 9000 for dev).}
 from the \code{DESCRIPTION} file}
 
 \item{ref}{the branch to use as a lookup. Defaults to \code{"master"}}
+
+\item{git_dir}{directory for the github repo. Can be found by using}
 }
 \description{
 Performs functions surrounding versioning within packages.

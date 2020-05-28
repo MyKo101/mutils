@@ -2,42 +2,50 @@
 % Please edit documentation in R/update_my_package.R
 \name{update_my_package}
 \alias{update_my_package}
+\alias{reinstall_my_package}
 \title{Updates current package}
 \usage{
+reinstall_my_package(dir = ".")
+
 update_my_package(
   git_message = NULL,
-  install = T,
-  run_check = F,
   update_type = "dev",
-  ignore_notes = F
+  ignore_notes = F,
+  dir = "."
 )
 }
 \arguments{
+\item{dir}{directory of the package (or a sub-directory of one).
+If NULL, the current working directory will be used.}
+
 \item{git_message}{git commit message to be passed to the \code{git()} function.
 If no \code{git_message} is provided, then the update will not be commited. If
 \code{git_message} is supplied, then \code{devtools::check()} will be ran first.
 \code{git()} will not be ran if \code{check()} returns that there is something wrong
 with the package.}
 
-\item{install}{should package be re-installed?}
-
-\item{run_check}{should the package be checked?}
-
 \item{update_type}{what level of update version to use.
 Accepts \code{"major"}, \code{"minor"},\code{"patch"}, or \code{"dev"}. Uses \code{"dev"} as default.}
 
 \item{ignore_notes}{should the Notes returned by running \code{devtools::check()} be ignored?
-(Errors and Warnings are never ignored)}
+(Errors and Warnings are never ignored and should be fixed before upload)}
 }
 \description{
-Performs a few functions to quickly and automatically
-update a package. In general, it performs the following:
+Wrapper functions to quickly re-install the current package
+and/or upload it via a \verb{git commit} command (after appropriate checks).
+}
+\section{Functions}{
+\itemize{
+\item \code{reinstall_my_package}: performs a few functions to quickly and automatically
+update a package. It performs the following:
 \itemize{
 \item \code{devtools::document()}
 \item \code{rmarkdown::render("README.Rmd")}
 \item \code{devtools::install()}
 \item \code{devtools::load_all()}
-\item \code{devtools::check()} (if requested)
-\item \code{git("add -A","commit -a -m <git_message>","push")} (if requested)
 }
-}
+
+\item \code{update_my_package}: checks if a package will
+pass \verb{R CMD CHECK} and if it will, uploads it via a git command
+}}
+
