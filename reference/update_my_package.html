@@ -47,16 +47,8 @@
 
 
 <meta property="og:title" content="Updates current package — update_my_package" />
-<meta property="og:description" content="Performs a few functions to quickly and automatically
-update a package. In general, it performs the following:
-devtools::document()
-rmarkdown::render(&quot;README.Rmd&quot;)
-devtools::install()
-devtools::load_all()
-devtools::check() (if requested)
-git(&quot;add -A&quot;,&quot;commit -a -m &amp;lt;git_message&amp;gt;&quot;,&quot;push&quot;) (if requested)
-
-" />
+<meta property="og:description" content="Wrapper functions to quickly re-install the current package
+and/or upload it via a git commit command (after appropriate checks)." />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -89,7 +81,7 @@ git(&quot;add -A&quot;,&quot;commit -a -m &amp;lt;git_message&amp;gt;&quot;,&quo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9005</span>
       </span>
     </div>
 
@@ -143,29 +135,27 @@ git(&quot;add -A&quot;,&quot;commit -a -m &amp;lt;git_message&amp;gt;&quot;,&quo
     </div>
 
     <div class="ref-description">
-    <p>Performs a few functions to quickly and automatically
-update a package. In general, it performs the following:</p><ul>
-<li><p><code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code></p></li>
-<li><p><code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>rmarkdown::render("README.Rmd")</a></code></p></li>
-<li><p><code><a href='https://devtools.r-lib.org//reference/install.html'>devtools::install()</a></code></p></li>
-<li><p><code><a href='https://devtools.r-lib.org//reference/load_all.html'>devtools::load_all()</a></code></p></li>
-<li><p><code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> (if requested)</p></li>
-<li><p><code><a href='git.html'>git("add -A","commit -a -m &lt;git_message&gt;","push")</a></code> (if requested)</p></li>
-</ul>
-
+    <p>Wrapper functions to quickly re-install the current package
+and/or upload it via a <code>git commit</code> command (after appropriate checks).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_my_package</span>(
+    <pre class="usage"><span class='fu'>reinstall_my_package</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)
+
+<span class='fu'>update_my_package</span>(
   <span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>install</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>run_check</span> <span class='kw'>=</span> <span class='no'>F</span>,
   <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>,
-  <span class='kw'>ignore_notes</span> <span class='kw'>=</span> <span class='no'>F</span>
+  <span class='kw'>ignore_notes</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dir</th>
+      <td><p>directory of the package (or a sub-directory of one).
+If NULL, the current working directory will be used.</p></td>
+    </tr>
     <tr>
       <th>git_message</th>
       <td><p>git commit message to be passed to the <code><a href='git.html'>git()</a></code> function.
@@ -175,14 +165,6 @@ If no <code>git_message</code> is provided, then the update will not be commited
 with the package.</p></td>
     </tr>
     <tr>
-      <th>install</th>
-      <td><p>should package be re-installed?</p></td>
-    </tr>
-    <tr>
-      <th>run_check</th>
-      <td><p>should the package be checked?</p></td>
-    </tr>
-    <tr>
       <th>update_type</th>
       <td><p>what level of update version to use.
 Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <code>"dev"</code>. Uses <code>"dev"</code> as default.</p></td>
@@ -190,10 +172,24 @@ Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <cod
     <tr>
       <th>ignore_notes</th>
       <td><p>should the Notes returned by running <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> be ignored?
-(Errors and Warnings are never ignored)</p></td>
+(Errors and Warnings are never ignored and should be fixed before upload)</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>reinstall_my_package</code>: performs a few functions to quickly and automatically
+update a package. It performs the following:</p><ul>
+<li><p><code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code></p></li>
+<li><p><code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>rmarkdown::render("README.Rmd")</a></code></p></li>
+<li><p><code><a href='https://devtools.r-lib.org//reference/install.html'>devtools::install()</a></code></p></li>
+<li><p><code><a href='https://devtools.r-lib.org//reference/load_all.html'>devtools::load_all()</a></code></p></li>
+</ul></li>
+<li><p><code>update_my_package</code>: checks if a package will
+pass <code>R CMD CHECK</code> and if it will, uploads it via a git command</p></li>
+</ul>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
