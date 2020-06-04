@@ -1,1 +1,35 @@
 url: https://michaelbarrowman.co.uk/mutils
+reference:
+  - title: "Formatting"
+    desc: "Functions here can be used to format your data"
+  - contents:
+    - justify
+    - set_whitespace
+
+  - title: "Evaluation"
+    desc: "Functions relating to evaluating expressions"
+  - contents:
+    - eval_expr
+    - dot_args
+    - escalate_warnings
+
+  - title: "Package Management"
+    desc: "Functions to help make packages easier"
+  - contents:
+    - update_my_package
+    - versioning
+    - git
+    - load_unload
+
+
+  - title: "Processing"
+    desc: "Functions to help with processing of data"
+  - contents:
+    - get_age
+    - time_overlap
+    - get_rate
+    - is_blank
+    - logit
+    - rep_list
+    - signed_log
+    - table

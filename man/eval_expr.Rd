@@ -4,24 +4,96 @@
 \alias{eval_expr}
 \title{Evaluate an expression within context}
 \usage{
-eval_expr(expr, data = NULL)
+eval_expr(expr, data, dot_expression = F, verbose = F)
 }
 \arguments{
-\item{expr}{expression to evaluate. Can be a quosure, as with
-\code{eval_tidy()} or a function to be applied to \code{data}.}
+\item{expr}{expression to evaluate. Can be a call or a function, the name of
+a function, a quosure, a quote.}
 
-\item{data}{A data frame or named list or vector to be passed to
-\code{eval_tidy}, or an argment to be passed to \code{expr}}
+\item{data}{A data frame or named list or vector to provide context within
+which to evaluate \code{expr}}
+
+\item{dot_expression}{logical indicating whether to force a \code{.} expression evaluation.
+If \code{.} is at the top layer (e.g. \code{length(.)}), then this will be
+detected automatically}
+
+\item{verbose}{logical indicating whether to print a detailed description of what
+\code{eval_expr()} is doing.}
 }
 \description{
-Uses \code{eval_tidy()} to evaluate an expression
-within the context of \code{data}.
+Uses \link[rlang:eval_tidy]{eval_tidy()} to evaluate an expression
+within the context of \code{data}, however it gives
+much more flexibility to what can be supplied as an expression.
+See examples for a non-exhaustive list of uses. Beware, that the
+flexibility of \code{eval_expr()} may cause unexpected behavior in
+some circumstances.
 }
 \examples{
 
-tbl <- tibble::tibble(x=1:5)
+#Basic evaluation in a data context
+tbl <- tibble::tibble(x=1:100)
 eval_expr(mean(x),tbl)
+
+#Can also use functions defined by pipelines (fseq)
 eval_expr(. \%>\% dplyr::pull(x) \%>\% mean,tbl)
+
+#Different to eval_tidy() is that the data doesn't need names
+eval_expr(mean,1:100)
+
+x <- 1:50
+eval_expr(mean,x)
+
+
+#functions using dot notation work fine too
+eval_expr(mean(.),1:100)
+eval_expr(mean(.$x),tbl)
+eval_expr(quantile(.,c(0.05,0.5,0.95)),1:100)
+
+#However, only simple cases are detected automatically
+\dontrun{
+eval_expr(mean(.)/length(.),1:100)
+}
+
+#More complicated expressions need to be explicit:
+eval_expr(mean(.)/length(.),1:100,dot_expression=TRUE)
+
+#It even pulls the function from the data
+lst <- list(x = 1:100,fun = mean)
+eval_expr(fun(x),lst)
+
+#Be wary as functions defined within the data will mask those in
+# the environment
+lst <- list(x=1:100,mean = sd)
+eval_expr(mean(x),lst)
+
+
+#It can even unquote arguments
+command <- quote(mean(x))
+eval_expr(command,tbl)
+
+#Although this doesn't work explicitly
+\dontrun{
+eval_expr(quote(mean(x)),tbl)
+}
+
+#Quosures aren't a problem
+my_quo <- rlang::quo(mean(x))
+eval_expr(my_quo,tbl)
+
+#And even within functions
+f <- function(expr,data)
+{
+  quasi_expr <- rlang::enquo(expr)
+  eval_expr(!!quasi_expr,data)
+}
+
+f(mean(x),tbl)
+
+#And allows an environment to be passed as `data`
+
+my_env <- new.env()
+my_env$x <- tbl$x
+eval_expr(mean(x),my_env)
 
 
 }
