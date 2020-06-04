@@ -4,6 +4,9 @@
     <loc>https://michaelbarrowman.co.uk/mutils/index.html</loc>
   </url>
   <url>
+    <loc>https://michaelbarrowman.co.uk/mutils/reference/dot_arg.html</loc>
+  </url>
+  <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/escalate_warning.html</loc>
   </url>
   <url>
@@ -17,9 +20,6 @@
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/git.html</loc>
-  </url>
-  <url>
-    <loc>https://michaelbarrowman.co.uk/mutils/reference/has_names.html</loc>
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/is_blank.html</loc>
@@ -62,8 +62,5 @@
   </url>
   <url>
     <loc>https://michaelbarrowman.co.uk/mutils/reference/versioning.html</loc>
-  </url>
-  <url>
-    <loc>https://michaelbarrowman.co.uk/mutils/articles/Function_Backgrounds.html</loc>
   </url>
 </urlset>
