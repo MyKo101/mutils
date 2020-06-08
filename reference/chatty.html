@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load or Unload packages — load_unload • mutils</title>
+<title>Used to define whether a function is chatty or not — chatty • mutils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,15 @@
 
 
 
-<meta property="og:title" content="Load or Unload packages — load_unload" />
-<meta property="og:description" content="load_packages checks if a vector of packages are installed, if not, installs them.
-Then loads them ready for use. unload_packages unloads packages, see detach" />
+<meta property="og:title" content="Used to define whether a function is chatty or not — chatty" />
+<meta property="og:description" content="Can be used to make a function talk more or not depending on the
+verbose argument. This will return either a cat() function
+(with arguments separated by &quot;\n&quot; to make it easier to read),
+or a silent function depending on verbose. Should only really
+be used within another function to decide whether to output to
+notes/feedback to the console or not throughout it's run. It
+does no evaluating of arguments and so everything should be
+easily (i.e. by cat()) coercible to a character." />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -117,43 +123,54 @@ Then loads them ready for use. unload_packages unloads packages, see detach" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load or Unload packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/load_unload.R'><code>R/load_unload.R</code></a></small>
-    <div class="hidden name"><code>load_unload.Rd</code></div>
+    <h1>Used to define whether a function is chatty or not</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/chatty.R'><code>R/chatty.R</code></a></small>
+    <div class="hidden name"><code>chatty.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>load_packages</code> checks if a vector of packages are installed, if not, installs them.
-Then loads them ready for use. <code>unload_packages</code> unloads packages, see <code><a href='https://rdrr.io/r/base/detach.html'>detach</a></code></p>
+    <p>Can be used to make a function talk more or not depending on the
+<code>verbose</code> argument. This will return either a <code><a href='https://rdrr.io/r/base/cat.html'>cat()</a></code> function
+(with arguments separated by <code>"\n"</code> to make it easier to read),
+or a silent function depending on <code>verbose</code>. Should only really
+be used within another function to decide whether to output to
+notes/feedback to the console or not throughout it's run. It
+does no evaluating of arguments and so everything should be
+easily (i.e. by <code><a href='https://rdrr.io/r/base/cat.html'>cat()</a></code>) coercible to a <code>character</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>load_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)
-
-<span class='fu'>unload_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)
-
-<span class='fu'>reload_packages</span>(<span class='no'>pkgs</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>chatty</span>(<span class='no'>verbose</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pkgs</th>
-      <td><p>character list of package names</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments to be passed to <code>library</code> or <code>detach</code></p></td>
+      <th>verbose</th>
+      <td><p>logical. Should <code>chatty</code> return a chatty function or not.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>load_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
-<span class='fu'>unload_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
+    <pre class="examples"><div class='input'><span class='no'>I_talk</span> <span class='kw'>&lt;-</span> <span class='fu'>chatty</span>(<span class='fl'>TRUE</span>)
+<span class='fu'>I_talk</span>(<span class='st'>"hello"</span>)</div><div class='output co'>#&gt; hello</div><div class='input'><span class='fu'>I_talk</span>(<span class='st'>"I talk"</span>,<span class='st'>"more..."</span>)</div><div class='output co'>#&gt; I talk
+#&gt; more...</div><div class='input'>
+<span class='no'>Im_silent</span> <span class='kw'>&lt;-</span> <span class='fu'>chatty</span>(<span class='fl'>FALSE</span>)
+<span class='fu'>Im_silent</span>(<span class='st'>"I don't say"</span>,<span class='st'>"anything"</span>)
 
-<span class='fu'>reload_packages</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dplyr"</span>,<span class='st'>"tibble"</span>))
-}</div></pre>
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>,<span class='no'>verbose</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+{
+  <span class='no'>I_talk</span> <span class='kw'>&lt;-</span> <span class='fu'>chatty</span>(<span class='no'>verbose</span>)
+  <span class='fu'>I_talk</span>(<span class='st'>"hello world"</span>,<span class='st'>"I am inside the f() function"</span>)
+  <span class='fu'>I_talk</span>(<span class='st'>"I'm calculating the mean..."</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>x</span>)
+}
+
+<span class='fu'>f</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt; [1] 5.5</div><div class='input'>
+<span class='fu'>f</span>(<span class='fl'>1</span>:<span class='fl'>10</span>,<span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; hello world
+#&gt; I am inside the f() function
+#&gt; I'm calculating the mean...</div><div class='output co'>#&gt; [1] 5.5</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -81,7 +81,7 @@ and/or upload it via a git commit command (after appropriate checks)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
       </span>
     </div>
 
@@ -133,7 +133,8 @@ and/or upload it via a <code>git commit</code> command (after appropriate checks
   <span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>,
   <span class='kw'>ignore_notes</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>
+  <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -161,6 +162,10 @@ Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <cod
       <th>ignore_notes</th>
       <td><p>should the Notes returned by running <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> be ignored?
 (Errors and Warnings are never ignored and should be fixed before upload)</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>logical. <code>Should update_my_package()</code> be chatty?</p></td>
     </tr>
     </table>
 
