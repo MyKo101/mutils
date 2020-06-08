@@ -1,7 +1,7 @@
 Package: mutils
-Title: Various utility functions to make data processing
-    smoother
-Version: 0.0.0.9006
+Type: Package
+Title: Various utility functions to make data processing smoother
+Version: 0.0.0.9007
 URL: https://michaelbarrowman.co.uk/mutils, https://github.com/MyKo101/mutils
 Authors@R: 
     person(given = "Michael",
@@ -9,6 +9,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "myko101ab@gmail.com",
            comment = c(ORCID = "0000-0003-0718-4482"))
+Maintainer: Michael A Barrowman <myko101ab@gmail.com>
 Description: A resource of various utility functions that can assist data analysts 
     and data processors to make their work easier; most functions are "nifty" 
     rather than "innovative".

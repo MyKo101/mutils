@@ -59,16 +59,21 @@ reinstall_my_package <- function(dir = ".")
 #' should the Notes returned by running `devtools::check()` be ignored?
 #' (Errors and Warnings are never ignored and should be fixed before upload)
 #'
+#' @param verbose
+#' logical. `Should update_my_package()` be chatty?
+#'
 #' @export
 #'
 
-update_my_package <- function(git_message = NULL, update_type="dev", ignore_notes=F,dir=".")
+update_my_package <- function(git_message = NULL, update_type="dev",
+                              ignore_notes=F,dir=".",verbose=F)
 {
+  cat0 <- chatty(verbose)
   pkg <- devtools::package_file(path=dir)
 
   if(is.null(git_message))
   {
-    cat("\nNo git_message supplied. Package will be checked without upload.\n")
+    cat0("\nNo git_message supplied. Package will be checked without upload.\n")
   } else
   {
     git_dir <- file.path(pkg,".git")
@@ -76,9 +81,9 @@ update_my_package <- function(git_message = NULL, update_type="dev", ignore_note
     {
       rlang::abort("Package is not a git repo. Use git() to set one up?")
     } else {
-      cat("\nCurrent git status:\n")
+      cat0("\nCurrent git status:\n")
       git("status")
-      cat("\nThe above will be commited if check passes\n")
+      cat0("\nThe above will be commited if check passes\n")
     }
   }
 
@@ -89,8 +94,8 @@ update_my_package <- function(git_message = NULL, update_type="dev", ignore_note
 
   if(!In_mutils)
   {
-    cat("\nupdate_my_package() was ran from Global environment.\n")
-    cat("\nI will delete myself and re-run from mutils. Goodbye. Be Goood.")
+    cat0("\nupdate_my_package() was ran from Global environment.\n")
+    cat0("\nI will delete myself and re-run from mutils. Goodbye. Be Goood.")
 
     rm(update_my_package,envir=c_parent)
 
@@ -100,7 +105,7 @@ update_my_package <- function(git_message = NULL, update_type="dev", ignore_note
   } else {
 
 
-    cat("\nSetting up package documentation\n")
+    cat0("\nSetting up package documentation\n")
     devtools::document()
     rmarkdown::render("README.Rmd",output_format="github_document")
     if(file.exists("README.html")) file.remove("README.html")
@@ -121,10 +126,10 @@ update_my_package <- function(git_message = NULL, update_type="dev", ignore_note
 
     if(any_reports && !is.null(git_message))
     {
-      cat("\ndevtools::check() returned reports. Fix these and try again.")
+      cat0("\ndevtools::check() returned reports. Fix these and try again.")
     } else if(!is.null(git_message))
     {
-      cat("\nNo report found, so uploading to git")
+      cat0("\nNo report found, so uploading to git")
       tryCatch(current_git <- git("config --get remote.origin.url")[2],
         warning=escalate_warning)
 
@@ -132,7 +137,7 @@ update_my_package <- function(git_message = NULL, update_type="dev", ignore_note
 
       versions <- Update_Version(type=update_type)
       versions_chr <- sapply(versions,paste,collapse=".")
-      cat("trying to update from version",versions_chr["old"],
+      cat0("trying to update from version",versions_chr["old"],
           "to version",versions_chr["new"],"\n")
       tryCatch({
         git_commit <- paste0("commit -a -m \"",git_message,"\"")

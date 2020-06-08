@@ -2,12 +2,9 @@
 % Please edit documentation in R/rep_list.R
 \name{rep_list}
 \alias{rep_list}
-\alias{NULL_list}
 \title{Replicate objects into a list}
 \usage{
 rep_list(x, n)
-
-NULL_list(n)
 }
 \arguments{
 \item{x}{value to be replicated}

@@ -4,8 +4,7 @@
 \name{mutils-package}
 \alias{mutils}
 \alias{mutils-package}
-\title{mutils: Various utility functions to make data processing
-    smoother}
+\title{mutils: Various utility functions to make data processing smoother}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

@@ -25,7 +25,7 @@ The goal of mutils is to provide useful functions to make data processing smooth
 
 The development version from [GitHub](https://github.com/) with:
 
-``` r
+```
 # install.packages("devtools")
 devtools::install_github("MyKo101/mutils")
 ```

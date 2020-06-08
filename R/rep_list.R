@@ -18,15 +18,13 @@
 rep_list <- function(x,n)
 {
   if(n > 0)
-    lapply(1:n,function(...) x)
-  else
-    NULL
-}
+  {
+    res <- vector("list",n)
+    res[1:n] <- x
+  } else
+  {
+    res <- NULL
+  }
 
-#' @rdname rep_list
-#' @export
-#'
-NULL_list <- function(n)
-{
-  rep_list(NULL,n)
+  res
 }

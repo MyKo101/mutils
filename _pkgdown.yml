@@ -7,11 +7,10 @@ reference:
     - set_whitespace
 
   - title: "Evaluation"
-    desc: "Functions relating to evaluating expressions"
+    desc: "Functions to be used in function creation"
   - contents:
-    - eval_expr
-    - dot_args
     - escalate_warnings
+    - chatty
 
   - title: "Package Management"
     desc: "Functions to help make packages easier"

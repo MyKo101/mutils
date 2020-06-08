@@ -11,7 +11,8 @@ update_my_package(
   git_message = NULL,
   update_type = "dev",
   ignore_notes = F,
-  dir = "."
+  dir = ".",
+  verbose = F
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ Accepts \code{"major"}, \code{"minor"},\code{"patch"}, or \code{"dev"}. Uses \co
 
 \item{ignore_notes}{should the Notes returned by running \code{devtools::check()} be ignored?
 (Errors and Warnings are never ignored and should be fixed before upload)}
+
+\item{verbose}{logical. \verb{Should update_my_package()} be chatty?}
 }
 \description{
 Wrapper functions to quickly re-install the current package
