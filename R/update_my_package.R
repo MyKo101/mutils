@@ -133,12 +133,13 @@ update_my_package <- function(git_message = NULL, update_type="dev",
       tryCatch(current_git <- git("config --get remote.origin.url")[2],
         warning=escalate_warning)
 
-      Match_Version_Github(git_dir=current_git)
+      n_ver <- Match_Version_Github(git_dir=current_git)
 
       versions <- Update_Version(type=update_type)
       versions_chr <- sapply(versions,paste,collapse=".")
       cat0("trying to update from version",versions_chr["old"],
           "to version",versions_chr["new"],"\n")
+      git_message_ver <- paste0(git_message," ~ [v",versions_chr["new"],"]")
       tryCatch({
         git_commit <- paste0("commit -a -m \"",git_message,"\"")
         git("add -A",git_commit,"push")

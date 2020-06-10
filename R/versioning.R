@@ -172,5 +172,6 @@ Match_Version_Github <- function(user=NULL,repo=NULL,ref="master",git_dir=NULL,d
 
   GH_Version <- Get_Version(dir)
   Set_Version(dir = dir,Version = GH_Version)
+  invisible(GH_Version)
 }
 
