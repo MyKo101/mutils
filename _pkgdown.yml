@@ -20,7 +20,6 @@ reference:
     - git
     - load_unload
 
-
   - title: "Processing"
     desc: "Functions to help with processing of data"
   - contents:
