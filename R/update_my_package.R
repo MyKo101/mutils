@@ -140,6 +140,7 @@ update_my_package <- function(git_message = NULL, update_type="dev",
       cat0("trying to update from version",versions_chr["old"],
           "to version",versions_chr["new"],"\n")
       git_message_ver <- paste0(git_message," ~ [v",versions_chr["new"],"]")
+      cat0("Setting commit message to",git_message_ver)
       tryCatch({
         git_commit <- paste0("commit -a -m \"",git_message_ver,"\"")
         git("add -A",git_commit,"push")

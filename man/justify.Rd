@@ -5,6 +5,8 @@
 \alias{justify.numeric}
 \alias{justify.character}
 \alias{justify.logical}
+\alias{justify.factor}
+\alias{justify.default}
 \title{Sets alignment of object, ready for printing}
 \usage{
 justify(x, ...)
@@ -14,6 +16,10 @@ justify(x, ...)
 \method{justify}{character}(x, align = "left", na.rm = TRUE, ...)
 
 \method{justify}{logical}(x, form = "short", case = "upper", align = "left", na.rm = TRUE, ...)
+
+\method{justify}{factor}(x, ..., numeric = F)
+
+\method{justify}{default}(x, ...)
 }
 \arguments{
 \item{x}{object to be justified}
@@ -33,6 +39,10 @@ to indicate which alignment to apply.}
 
 \item{case}{should output be \code{"upper"} (e.g. \code{"TRUE"}),
 \code{"lower"} (e.g. \code{"false"}) or \code{"capitalised"} (e.g. \code{"True"})}
+
+\item{numeric}{for factors, should the underlying numeric reference be used,
+or the level (if \code{TRUE}, \code{as.character()} is applied, otherwise
+\code{as.numeric()} is applied)}
 }
 \description{
 Applies formatting to an object to align it appropriately.

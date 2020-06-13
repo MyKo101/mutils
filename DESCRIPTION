@@ -1,7 +1,8 @@
 Package: mutils
 Type: Package
 Title: Various utility functions to make data processing smoother
-Version: 0.0.0.9009
+Version: 0.0.0.9010
+Date: 2020-06-13
 URL: https://michaelbarrowman.co.uk/mutils, https://github.com/MyKo101/mutils
 Authors@R: 
     person(given = "Michael",

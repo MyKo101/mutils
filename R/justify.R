@@ -230,6 +230,36 @@ justify.logical <- function(x,form="short",case="upper",align="left",na.rm=TRUE,
 }
 
 
+#' @rdname justify
+#' @export
+#'
+#' @param numeric
+#' for factors, should the underlying numeric reference be used,
+#' or the level (if `TRUE`, `as.character()` is applied, otherwise
+#' `as.numeric()` is applied)
+#'
+
+justify.factor <- function(x,...,numeric=F) {
+  if(numeric)
+  {
+    justify.numeric(as.numeric(x),...,d=0)
+  } else {
+    justify.character(as.character(x),...)
+  }
+
+}
+
+#' @rdname justify
+#' @export
+#'
+#'
+
+justify.default <- function(x,...)
+{
+  as.character(x)
+}
+
+
 
 
 

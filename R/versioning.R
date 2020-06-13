@@ -46,9 +46,18 @@ Set_Version <- function(dir=".",Version)
   Version <- paste0(Version,collapse=".")
   Version <- paste0("Version: ",Version)
 
+  Date_today <- paste0("Date: ",Sys.Date())
+
   Desc_file <- readLines("DESCRIPTION")
   Version_row <- grep("^Version:",Desc_file)
   Desc_file[Version_row] <- Version
+
+  Date_row <- grep("^Date:",Desc_file)
+  if(length(Date_row) == 0)
+  {
+    Date_row <- nrow(Desc_file) + 1
+  }
+  Desc_file[Date_row] <- Date_today
 
   writeLines(Desc_file,"DESCRIPTION")
 }
