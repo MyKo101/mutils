@@ -86,7 +86,7 @@ use multiple ways of defining length of output
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9010</span>
       </span>
     </div>
 
@@ -146,7 +146,13 @@ use multiple ways of defining length of output
 <span class='fu'>justify</span>(<span class='no'>x</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for logical</span>
-<span class='fu'>justify</span>(<span class='no'>x</span>, <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"short"</span>, <span class='kw'>case</span> <span class='kw'>=</span> <span class='st'>"upper"</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>justify</span>(<span class='no'>x</span>, <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"short"</span>, <span class='kw'>case</span> <span class='kw'>=</span> <span class='st'>"upper"</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for factor</span>
+<span class='fu'>justify</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>numeric</span> <span class='kw'>=</span> <span class='no'>F</span>)
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>justify</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,6 +188,12 @@ to indicate which alignment to apply.</p></td>
       <th>case</th>
       <td><p>should output be <code>"upper"</code> (e.g. <code>"TRUE"</code>),
 <code>"lower"</code> (e.g. <code>"false"</code>) or <code>"capitalised"</code> (e.g. <code>"True"</code>)</p></td>
+    </tr>
+    <tr>
+      <th>numeric</th>
+      <td><p>for factors, should the underlying numeric reference be used,
+or the level (if <code>TRUE</code>, <code><a href='https://rdrr.io/r/base/character.html'>as.character()</a></code> is applied, otherwise
+<code><a href='https://rdrr.io/r/base/numeric.html'>as.numeric()</a></code> is applied)</p></td>
     </tr>
     </table>
 
