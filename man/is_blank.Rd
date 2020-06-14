@@ -13,7 +13,6 @@ is_blank(x)
 Checks if a character string is made up of only spaces
 }
 \examples{
-x <- c("red","blue green","  "," ","","yellow")
+x <- c("red", "blue green", "  ", " ", "", "yellow")
 is_blank(x)
-
 }

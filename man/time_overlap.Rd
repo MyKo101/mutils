@@ -25,19 +25,20 @@ tbl <- tibble::tribble(
   "B", "13/02/2020", "18/02/2020",
   "B", "16/02/2020", "20/02/2020"
 ) \%>\%
-  dplyr::mutate_at(dplyr::vars(t1,t2),lubridate::dmy)
+  dplyr::mutate_at(dplyr::vars(t1, t2), lubridate::dmy)
 
-plot(x=tbl$t1,y=1:nrow(tbl),col=(tbl$id=="A")+1,
-     xlim = range(tbl$t1,tbl$t2))
-points(x=tbl$t2,y=1:nrow(tbl),col=(tbl$id=="A")+1)
-for(i in 1:nrow(tbl))
-  lines(x=c(tbl$t1[i],tbl$t2[i]),y=c(i,i),col=(tbl$id[i]=="A")+1)
+plot(
+  x = tbl$t1, y = 1:nrow(tbl), col = (tbl$id == "A") + 1,
+  xlim = range(tbl$t1, tbl$t2)
+)
+points(x = tbl$t2, y = 1:nrow(tbl), col = (tbl$id == "A") + 1)
+for (i in 1:nrow(tbl)) {
+  lines(x = c(tbl$t1[i], tbl$t2[i]), y = c(i, i), col = (tbl$id[i] == "A") + 1)
+}
 
-tbl$seq <- time_overlap(tbl$t1,tbl$t2)
+tbl$seq <- time_overlap(tbl$t1, tbl$t2)
 
 tbl \%>\%
   dplyr::group_by(id) \%>\%
-  dplyr::mutate(seq = time_overlap(t1,t2))
-
-
+  dplyr::mutate(seq = time_overlap(t1, t2))
 }

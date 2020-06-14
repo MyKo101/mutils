@@ -17,51 +17,40 @@
 #'
 #' @examples
 #' \dontrun{
-#' load_packages(c("dplyr","tibble"))
-#' unload_packages(c("dplyr","tibble"))
+#' load_packages(c("dplyr", "tibble"))
+#' unload_packages(c("dplyr", "tibble"))
 #'
-#' reload_packages(c("dplyr","tibble"))
+#' reload_packages(c("dplyr", "tibble"))
 #' }
 #'
-
-load_packages <- function(pkgs,...)
-{
+load_packages <- function(pkgs, ...) {
   requireNamespace("purrr")
   already_installed_list <- rownames(utils::installed.packages())
   already_installed <- pkgs %in% already_installed_list
 
-  if(any(!already_installed))
-  {
+  if (any(!already_installed)) {
     tryCatch(utils::install.packages(pkgs[!already_installed]),
-             error=utils::install.packages(pkgs[!already_installed],repos="https://www.stats.bris.ac.uk/R/"))
+      error = utils::install.packages(pkgs[!already_installed], repos = "https://www.stats.bris.ac.uk/R/")
+    )
   }
 
-  purrr::walk(pkgs,library,character.only=T,...)
-
+  purrr::walk(pkgs, library, character.only = T, ...)
 }
 
 #' @rdname load_unload
 #' @export
 
-unload_packages <- function(pkgs,...)
-{
+unload_packages <- function(pkgs, ...) {
   requireNamespace("purrr")
-  pkgs <- paste0("package:",pkgs)
+  pkgs <- paste0("package:", pkgs)
 
-  purrr::walk(pkgs,detach,character.only=T,unload=T,...)
-
+  purrr::walk(pkgs, detach, character.only = T, unload = T, ...)
 }
 
 
 #' @rdname load_unload
 #' @export
-reload_packages <- function(pkgs,...)
-{
-  unload_packages(pkgs,...)
-  load_packages(pkgs,...)
+reload_packages <- function(pkgs, ...) {
+  unload_packages(pkgs, ...)
+  load_packages(pkgs, ...)
 }
-
-
-
-
-

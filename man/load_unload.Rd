@@ -24,10 +24,10 @@ Then loads them ready for use. \code{unload_packages} unloads packages, see \cod
 }
 \examples{
 \dontrun{
-load_packages(c("dplyr","tibble"))
-unload_packages(c("dplyr","tibble"))
+load_packages(c("dplyr", "tibble"))
+unload_packages(c("dplyr", "tibble"))
 
-reload_packages(c("dplyr","tibble"))
+reload_packages(c("dplyr", "tibble"))
 }
 
 }

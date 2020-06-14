@@ -12,14 +12,12 @@
 #' @export
 #'
 #' @examples
-#' x <- c("red","blue green","  "," ","","yellow")
+#' x <- c("red", "blue green", "  ", " ", "", "yellow")
 #' is_blank(x)
-#'
-
-is_blank <- function(x)
-{
-  if(!is.character(x))
+is_blank <- function(x) {
+  if (!is.character(x)) {
     rlang::abort("x needs to be of type character")
-  y <- gsub(" ","",x)
+  }
+  y <- gsub(" ", "", x)
   nchar(y) == 0
 }

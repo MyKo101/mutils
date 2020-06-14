@@ -26,27 +26,28 @@
 #' @export
 #'
 #' @examples
-#' x <- c(4,2,1,4,6,7,4,2,2,9)
-#' time <- lubridate::ymd(c("2000-08-23","2000-04-19","2000-10-12","2000-07-22","2000-12-13",
-#' "2000-06-20","2000-01-02","2000-11-12","2000-03-11","2000-08-04"))
-#' get_rate(x,time)
-#'
+#' x <- c(4, 2, 1, 4, 6, 7, 4, 2, 2, 9)
+#' time <- lubridate::ymd(c(
+#'   "2000-08-23", "2000-04-19", "2000-10-12", "2000-07-22", "2000-12-13",
+#'   "2000-06-20", "2000-01-02", "2000-11-12", "2000-03-11", "2000-08-04"
+#' ))
+#' get_rate(x, time)
 #' \dontrun{
-#' df <- tibble::tibble(x,time) %>%
-#' dplyr::mutate(x.rate = get_rate(x,time,historic="average"))
+#' df <- tibble::tibble(x, time) %>%
+#'   dplyr::mutate(x.rate = get_rate(x, time, historic = "average"))
 #' }
 #'
-
-get_rate <- function(x,time,unit="days",historic="backward")
-{
-  requireNamespace("lubridate",quietly = T)
+get_rate <- function(x, time, unit = "days", historic = "backward") {
+  requireNamespace("lubridate", quietly = T)
 
   len.x <- length(x)
 
-  if(len.x != length(time))
+  if (len.x != length(time)) {
     stop("lengths of x & time must be equal")
-  if(length(unique(time)) < length(time))
+  }
+  if (length(unique(time)) < length(time)) {
     stop("duplicate times detected")
+  }
 
   id <- 1:len.x
 
@@ -57,25 +58,23 @@ get_rate <- function(x,time,unit="days",historic="backward")
 
   dX <- x[-1] - x[-len.x]
 
-  dT.int <- lubridate::interval(time[-len.x],time[-1])
-  dT <- lubridate::as.duration(dT.int)/lubridate::duration(1,unit)
+  dT.int <- lubridate::interval(time[-len.x], time[-1])
+  dT <- lubridate::as.duration(dT.int) / lubridate::duration(1, unit)
 
-  dX_dT <- dX/dT
+  dX_dT <- dX / dT
 
-  historic.ref <- substring(historic,1,1)
+  historic.ref <- substring(historic, 1, 1)
 
-  if(historic.ref == "b")
-  {
-    dX_dT2 <- c(NA,dX_dT)
-  } else if(historic.ref == "f")
-  {
-    dX_dT2 <- c(dX_dT,NA)
-  } else if(historic.ref == "a")
-  {
-    dX_dT2 <- c(dX_dT[1],
-               (dX_dT[-1] + dX_dT[-(len.x-1)])/2,
-               dX_dT[len.x-1])
-
+  if (historic.ref == "b") {
+    dX_dT2 <- c(NA, dX_dT)
+  } else if (historic.ref == "f") {
+    dX_dT2 <- c(dX_dT, NA)
+  } else if (historic.ref == "a") {
+    dX_dT2 <- c(
+      dX_dT[1],
+      (dX_dT[-1] + dX_dT[-(len.x - 1)]) / 2,
+      dX_dT[len.x - 1]
+    )
   }
 
   dX_dT2 <- dX_dT2[order(id)]

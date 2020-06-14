@@ -21,7 +21,6 @@ useful to replace the double whitespace with a space
 preceding by \code{"symbol"} (or the other way round conditionally).
 }
 \examples{
-x <- c("  a","b  ","  c  ")
+x <- c("  a", "b  ", "  c  ")
 set_whitespace(x)
-
 }

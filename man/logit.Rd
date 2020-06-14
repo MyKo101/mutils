@@ -22,11 +22,9 @@ Calculates the logit (or log-odds) value of a probability
 probs <- runif(100)
 a <- logit(probs)
 
-plot(probs,a,xlim=c(0,1))
+plot(probs, a, xlim = c(0, 1))
 
 probs0 <- unlogit(a)
 
-plot(probs,probs0,xlim=c(0,1),ylim=c(0,1))
-
-
+plot(probs, probs0, xlim = c(0, 1), ylim = c(0, 1))
 }

@@ -19,25 +19,22 @@
 #' }
 #'
 #' \dontrun{
-#' git("add -A","commit -m 'Commit Message'","push")
+#' git("add -A", "commit -m 'Commit Message'", "push")
 #' }
 #'
-
-git <- function(...)
-{
+git <- function(...) {
   args <- rlang::list2(...)
   res <- NULL
-  for(c_arg in args)
+  for (c_arg in args)
   {
-    git_message <- paste0("git ",c_arg)
-    cres <- system(git_message,intern=T)
+    git_message <- paste0("git ", c_arg)
+    cres <- system(git_message, intern = T)
 
-    cat("\n$",git_message,"\n")
-    cat(paste0(cres,collapse="\n"))
+    cat("\n$", git_message, "\n")
+    cat(paste0(cres, collapse = "\n"))
     cat("\n")
 
-    res <- c(paste0("$ ",git_message),cres)
-
+    res <- c(paste0("$ ", git_message), cres)
   }
 
   invisible(res)

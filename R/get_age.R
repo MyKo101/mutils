@@ -19,35 +19,11 @@
 #' which the age is requested
 #'
 #' @examples
-#' birthdays <- lubridate::dmy(c("01/01/1990","29/02/1992","31/12/2000","15/06/1995"))
-#' get_age(birthdays,lubridate::today())
-#'
-
-get_age <- function(DOB,Date)
-{
-  requireNamespace("lubridate",quietly=T)
-  dT.int <- lubridate::interval(DOB,Date)
-  dT.length <- lubridate::time_length(dT.int,unit="year")
+#' birthdays <- lubridate::dmy(c("01/01/1990", "29/02/1992", "31/12/2000", "15/06/1995"))
+#' get_age(birthdays, lubridate::today())
+get_age <- function(DOB, Date) {
+  requireNamespace("lubridate", quietly = T)
+  dT.int <- lubridate::interval(DOB, Date)
+  dT.length <- lubridate::time_length(dT.int, unit = "year")
   return(floor(dT.length))
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

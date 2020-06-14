@@ -26,18 +26,17 @@ NULL
 #'
 #' @export
 #'
-reinstall_my_package <- function(dir = ".")
-{
-  pkg <- devtools::package_file(path=dir)
+reinstall_my_package <- function(dir = ".") {
+  pkg <- devtools::package_file(path = dir)
 
   devtools::document(pkg)
-  README_file.Rmd <- file.path(pkg,"README.Rmd")
-  README_file.html <- file.path(pkg,"README.html")
+  README_file.Rmd <- file.path(pkg, "README.Rmd")
+  README_file.html <- file.path(pkg, "README.html")
 
-  rmarkdown::render(README_file.Rmd,output_format="github_document")
-  if(file.exists(README_file.html)) file.remove(README_file.html)
+  rmarkdown::render(README_file.Rmd, output_format = "github_document")
+  if (file.exists(README_file.html)) file.remove(README_file.html)
 
-  devtools::install(pkg,upgrade="never")
+  devtools::install(pkg, upgrade = "never")
   devtools::load_all(pkg)
 }
 
@@ -65,20 +64,16 @@ reinstall_my_package <- function(dir = ".")
 #' @export
 #'
 
-update_my_package <- function(git_message = NULL, update_type="dev",
-                              ignore_notes=F,dir=".",verbose=F)
-{
+update_my_package <- function(git_message = NULL, update_type = "dev",
+                              ignore_notes = F, dir = ".", verbose = F) {
   cat0 <- chatty(verbose)
-  pkg <- devtools::package_file(path=dir)
+  pkg <- devtools::package_file(path = dir)
 
-  if(is.null(git_message))
-  {
+  if (is.null(git_message)) {
     cat0("\nNo git_message supplied. Package will be checked without upload.\n")
-  } else
-  {
-    git_dir <- file.path(pkg,".git")
-    if(!file.exists(git_dir))
-    {
+  } else {
+    git_dir <- file.path(pkg, ".git")
+    if (!file.exists(git_dir)) {
       rlang::abort("Package is not a git repo. Use git() to set one up?")
     } else {
       cat0("\nCurrent git status:\n")
@@ -92,77 +87,70 @@ update_my_package <- function(git_message = NULL, update_type="dev",
   In_mutils <- rlang::env_label(c_parent) == "namespace:mutils"
 
 
-  if(!In_mutils)
-  {
+  if (!In_mutils) {
     cat0("\nupdate_my_package() was ran from Global environment.\n")
     cat0("\nI will delete myself and re-run from mutils. Goodbye. Be Goood.")
 
-    rm(update_my_package,envir=c_parent)
+    rm(update_my_package, envir = c_parent)
 
-    mutils::update_my_package(git_message=git_message, update_type=update_type,
-                              ignore_notes=ignore_notes, dir=dir)
-
+    mutils::update_my_package(
+      git_message = git_message, update_type = update_type,
+      ignore_notes = ignore_notes, dir = dir
+    )
   } else {
-
-
     cat0("\nSetting up package documentation\n")
     devtools::document()
-    rmarkdown::render("README.Rmd",output_format="github_document")
-    if(file.exists("README.html")) file.remove("README.html")
+    rmarkdown::render("README.Rmd", output_format = "github_document")
+    if (file.exists("README.html")) file.remove("README.html")
 
     check_results <- devtools::check()
     print(check_results)
-    if(ignore_notes)
-    {
-      any_reports <- (length(check_results$errors) >0) ||
-        (length(check_results$warnings) >0)
-    } else
-    {
-      any_reports <- (length(check_results$errors) >0) ||
-        (length(check_results$warnings) >0) ||
-        (length(check_results$notes) >0)
-
+    if (ignore_notes) {
+      any_reports <- (length(check_results$errors) > 0) ||
+        (length(check_results$warnings) > 0)
+    } else {
+      any_reports <- (length(check_results$errors) > 0) ||
+        (length(check_results$warnings) > 0) ||
+        (length(check_results$notes) > 0)
     }
 
-    if(any_reports && !is.null(git_message))
-    {
+    if (any_reports && !is.null(git_message)) {
       cat0("\ndevtools::check() returned reports. Fix these and try again.")
-    } else if(!is.null(git_message))
-    {
+    } else if (!is.null(git_message)) {
       cat0("\nNo report found, so updated version and uploading to git")
       tryCatch(current_git <- git("config --get remote.origin.url")[2],
-        warning=escalate_warning)
+        warning = escalate_warning
+      )
 
-      n_ver <- Match_Version_Github(git_dir=current_git)
+      n_ver <- Match_Version_Github(git_dir = current_git)
 
-      versions <- Update_Version(type=update_type)
-      versions_chr <- sapply(versions,paste,collapse=".")
-      cat0("trying to update from version",versions_chr["old"],
-          "to version",versions_chr["new"],"\n")
+      versions <- Update_Version(type = update_type)
+      versions_chr <- sapply(versions, paste, collapse = ".")
+      cat0(
+        "trying to update from version", versions_chr["old"],
+        "to version", versions_chr["new"], "\n"
+      )
 
 
       cat0("Re-rendering README with new version")
-      rmarkdown::render("README.Rmd",output_format="github_document")
-      if(file.exists("README.html")) file.remove("README.html")
+      rmarkdown::render("README.Rmd", output_format = "github_document")
+      if (file.exists("README.html")) file.remove("README.html")
 
 
-      git_message_ver <- paste0(git_message," ~ [v",versions_chr["new"],"]")
-      cat0("Setting commit message to",git_message_ver)
-      git_commit <- paste0("commit -a -m \"",git_message_ver,"\"")
-      tryCatch({
-        git("add -A",git_commit,"push")
-      }, error=function(e)
-      {
-        Set_Version(Version=versions$old)
-        rlang::abort("Error when updating via git()")
-      })
+      git_message_ver <- paste0(git_message, " ~ [v", versions_chr["new"], "]")
+      cat0("Setting commit message to", git_message_ver)
+      git_commit <- paste0("commit -a -m \"", git_message_ver, "\"")
+      tryCatch(
+        {
+          git("add -A", git_commit, "push")
+        },
+        error = function(e) {
+          Set_Version(Version = versions$old)
+          rlang::abort("Error when updating via git()")
+        }
+      )
+      devtools::install(pkg, upgrade = "never")
+      devtools::load_all(pkg)
     }
   }
-
 }
-
-
-
-
-
-

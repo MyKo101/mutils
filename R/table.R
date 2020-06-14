@@ -17,23 +17,21 @@
 #' @export
 #'
 #' @examples
-#' tbl <- data.frame(x=c("a","a","b","a","a","b","b","b","a"),
-#'                   y=c("c","d","c","d","c","d","c","d","c"))
-#' table(tbl$x,tbl$y)
-#' table(tbl,x,y)
-#' tbl %>% table(x,y)
-#'
-
-table <- function(x,...)
-{
+#' tbl <- data.frame(
+#'   x = c("a", "a", "b", "a", "a", "b", "b", "b", "a"),
+#'   y = c("c", "d", "c", "d", "c", "d", "c", "d", "c")
+#' )
+#' table(tbl$x, tbl$y)
+#' table(tbl, x, y)
+#' tbl %>% table(x, y)
+table <- function(x, ...) {
   .call <- sys.call()
   .call[[1]] <- quote(base::table)
-  if(is.list(x))
-  {
+  if (is.list(x)) {
     .call[[2]] <- NULL
-    res <- eval(.call,x)
+    res <- eval(.call, x)
   } else {
-    res <- eval(.call,parent.frame())
+    res <- eval(.call, parent.frame())
   }
 
   return(res)

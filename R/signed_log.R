@@ -19,30 +19,29 @@
 #' @export
 #'
 #' @examples
-#' x <- seq(-10,10,0.01)
+#' x <- seq(-10, 10, 0.01)
 #' y <- signed_log(x)
 #'
-#' plot(x,y,type="l")
+#' plot(x, y, type = "l")
 #'
 #' x0 <- unsigned_log(y)
 #'
-#' plot(y,x0,type="l")
+#' plot(y, x0, type = "l")
 #'
-#' plot(x,x0,type="l")
-
-signed_log <- function(x,base=exp(1))
-{
-  if(is.complex(x) || is.complex(base))
+#' plot(x, x0, type = "l")
+signed_log <- function(x, base = exp(1)) {
+  if (is.complex(x) || is.complex(base)) {
     stop("unimplemented for complex numbers")
-  log(abs(x) + 1,base=base)*sign(x)
+  }
+  log(abs(x) + 1, base = base) * sign(x)
 }
 
 #' @rdname signed_log
 #' @export
 
-unsigned_log <- function(x,base=exp(1))
-{
-  if(is.complex(x) || is.complex(base))
+unsigned_log <- function(x, base = exp(1)) {
+  if (is.complex(x) || is.complex(base)) {
     stop("unimplemented for complex numbers")
-  sign(x)*(exp(log(base)*abs(x)) - 1)
+  }
+  sign(x) * (exp(log(base) * abs(x)) - 1)
 }

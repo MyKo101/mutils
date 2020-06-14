@@ -17,10 +17,11 @@ Wraps the base package's \code{\link[base]{table}} function to allow users
 to use this within a pipeline.
 }
 \examples{
-tbl <- data.frame(x=c("a","a","b","a","a","b","b","b","a"),
-                  y=c("c","d","c","d","c","d","c","d","c"))
-table(tbl$x,tbl$y)
-table(tbl,x,y)
-tbl \%>\% table(x,y)
-
+tbl <- data.frame(
+  x = c("a", "a", "b", "a", "a", "b", "b", "b", "a"),
+  y = c("c", "d", "c", "d", "c", "d", "c", "d", "c")
+)
+table(tbl$x, tbl$y)
+table(tbl, x, y)
+tbl \%>\% table(x, y)
 }

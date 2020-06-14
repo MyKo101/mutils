@@ -14,7 +14,6 @@
 #' @export
 #'
 
-escalate_warning <- function(w)
-{
-  rlang::abort(paste0("\rError Escalated from Warning:\n",w$message))
+escalate_warning <- function(w) {
+  rlang::abort(paste0("\rError Escalated from Warning:\n", w$message))
 }

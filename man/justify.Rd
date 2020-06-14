@@ -55,25 +55,20 @@ use multiple ways of defining length of output
 (e.g. significant figures and decimal places concurrently)
 }
 \examples{
-rnd <- 10^(runif(100,-2,8))
-rnd <- rnd*runif(100,-1,1)
-justify(rnd,2)
-
+rnd <- 10^(runif(100, -2, 8))
+rnd <- rnd * runif(100, -1, 1)
+justify(rnd, 2)
 set.seed(1)
 all_cols <- colours()
-all_cols <- unique(gsub("[0-9]","",all_cols))
-smp_cols <- sample(all_cols,20)
-justify(smp_cols,align="centre")
+all_cols <- unique(gsub("[0-9]", "", all_cols))
+smp_cols <- sample(all_cols, 20)
+justify(smp_cols, align = "centre")
 
-
-
-x <- c(TRUE,FALSE,NA)
+x <- c(TRUE, FALSE, NA)
 
 justify(x)
-justify(x,"long","lower","right")
-justify(x,form="long",align="centre")
-justify(x,form="numeric")
-justify(x,na.rm=TRUE)
-
-
+justify(x, "long", "lower", "right")
+justify(x, form = "long", align = "centre")
+justify(x, form = "numeric")
+justify(x, na.rm = TRUE)
 }

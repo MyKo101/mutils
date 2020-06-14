@@ -15,14 +15,11 @@
 #'
 #' @export
 
-rep_list <- function(x,n)
-{
-  if(n > 0)
-  {
-    res <- vector("list",n)
+rep_list <- function(x, n) {
+  if (n > 0) {
+    res <- vector("list", n)
     res[1:n] <- x
-  } else
-  {
+  } else {
     res <- NULL
   }
 

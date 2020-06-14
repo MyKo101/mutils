@@ -22,21 +22,19 @@ easily (i.e. by \code{cat()}) coercible to a \code{character}.
 \examples{
 I_talk <- chatty(TRUE)
 I_talk("hello")
-I_talk("I talk","more...")
+I_talk("I talk", "more...")
 
 Im_silent <- chatty(FALSE)
-Im_silent("I don't say","anything")
+Im_silent("I don't say", "anything")
 
-f <- function(x,verbose=FALSE)
-{
+f <- function(x, verbose = FALSE) {
   I_talk <- chatty(verbose)
-  I_talk("hello world","I am inside the f() function")
+  I_talk("hello world", "I am inside the f() function")
   I_talk("I'm calculating the mean...")
   mean(x)
 }
 
 f(1:10)
 
-f(1:10,verbose=TRUE)
-
+f(1:10, verbose = TRUE)
 }

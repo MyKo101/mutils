@@ -19,7 +19,6 @@ based on their date of birth. This uses \code{\link{lubridate}} functions
 to calculate an age, which means that leap years are also taken into account.
 }
 \examples{
-birthdays <- lubridate::dmy(c("01/01/1990","29/02/1992","31/12/2000","15/06/1995"))
-get_age(birthdays,lubridate::today())
-
+birthdays <- lubridate::dmy(c("01/01/1990", "29/02/1992", "31/12/2000", "15/06/1995"))
+get_age(birthdays, lubridate::today())
 }

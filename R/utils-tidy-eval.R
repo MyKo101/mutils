@@ -49,4 +49,3 @@ NULL
 #' @export
 #' @keywords internal
 . <- structure(list(), class = "rlang_fake_data_pronoun")
-

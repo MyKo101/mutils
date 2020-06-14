@@ -15,8 +15,9 @@
 #' @export
 #'
 
-justify <- function(x,...)
+justify <- function(x, ...) {
   UseMethod("justify")
+}
 
 #' @rdname justify
 #' @export
@@ -34,68 +35,62 @@ justify <- function(x,...)
 #'
 #'
 #' @examples
-#' rnd <- 10^(runif(100,-2,8))
-#' rnd <- rnd*runif(100,-1,1)
-#' justify(rnd,2)
-#'
-
-justify.numeric <- function(x,d=3,...)
-{
-  if(!is.numeric(x))
+#' rnd <- 10^(runif(100, -2, 8))
+#' rnd <- rnd * runif(100, -1, 1)
+#' justify(rnd, 2)
+justify.numeric <- function(x, d = 3, ...) {
+  if (!is.numeric(x)) {
     rlang::abort("x must be numeric")
+  }
 
-  if(length(d)>1)
-  {
+  if (length(d) > 1) {
     d <- d[1]
     rlang::warn("d (digits) was of length greater than 1, first entry used")
   }
 
   x <- as.double(x)
-  x <- round(x,d)
+  x <- round(x, d)
 
   s <- sign(x)
   x0 <- abs(x)
-  NAs <- is.na(x)|is.nan(x)
+  NAs <- is.na(x) | is.nan(x)
   s[NAs] <- 1
 
-  x_chr_plain <- sprintf("%.f",floor(x0))
+  x_chr_plain <- sprintf("%.f", floor(x0))
 
   x_chr_comma <- x_chr_plain %>%
-    ifelse(NAs,"",.) %>%
+    ifelse(NAs, "", .) %>%
     stringi::stri_reverse(.) %>%
     gsub("(.{3})", "\\1,", .) %>%
-    gsub(",$","",.) %>%
+    gsub(",$", "", .) %>%
     stringi::stri_reverse(.) %>%
-    ifelse(s==-1,paste0("-",.),.)
+    ifelse(s == -1, paste0("-", .), .)
 
   f <- max(nchar(x_chr_comma))
 
   white_space <- x_chr_comma %>%
-    nchar %>%
-    magrittr::subtract(f,.) %>%
-    sapply(strrep,x = " ")
+    nchar() %>%
+    magrittr::subtract(f, .) %>%
+    sapply(strrep, x = " ")
 
-  x_f <- paste0(white_space,x_chr_comma)
+  x_f <- paste0(white_space, x_chr_comma)
 
 
-  if(d > 0)
-  {
+  if (d > 0) {
     infs <- is.infinite(x)
 
     x_d <- x0 %>%
-      ifelse(infs,0,.) %>%
+      ifelse(infs, 0, .) %>%
       magrittr::mod(1) %>%
       magrittr::multiply_by(10^d) %>%
       round() %>%
-      paste0(strrep("0",d),.) %>%
-      substring(nchar(.)-d+1,nchar(.)) %>%
-      paste0(".",.) %>%
-      ifelse(infs|NAs,strrep(" ",d+1),.)
+      paste0(strrep("0", d), .) %>%
+      substring(nchar(.) - d + 1, nchar(.)) %>%
+      paste0(".", .) %>%
+      ifelse(infs | NAs, strrep(" ", d + 1), .)
 
-    res <- paste0(x_f,x_d)
-
-  } else
-  {
+    res <- paste0(x_f, x_d)
+  } else {
     res <- x_f
   }
 
@@ -115,46 +110,38 @@ justify.numeric <- function(x,d=3,...)
 #' @examples
 #' set.seed(1)
 #' all_cols <- colours()
-#' all_cols <- unique(gsub("[0-9]","",all_cols))
-#' smp_cols <- sample(all_cols,20)
-#' justify(smp_cols,align="centre")
-#'
-#'
-
-justify.character <- function(x,align = "left",na.rm=TRUE,...)
-{
-  align <- tolower(substr(align,1,1))
+#' all_cols <- unique(gsub("[0-9]", "", all_cols))
+#' smp_cols <- sample(all_cols, 20)
+#' justify(smp_cols, align = "centre")
+justify.character <- function(x, align = "left", na.rm = TRUE, ...) {
+  align <- tolower(substr(align, 1, 1))
 
 
-  if(na.rm)
-  {
-    x[is.na(x)|is.nan(x)] <- ""
-  } else
-  {
-    x[is.na(x)|is.nan(x)] <- "NA"
+  if (na.rm) {
+    x[is.na(x) | is.nan(x)] <- ""
+  } else {
+    x[is.na(x) | is.nan(x)] <- "NA"
   }
 
 
-  width <- max(nchar(x),na.rm=TRUE)
+  width <- max(nchar(x), na.rm = TRUE)
   extra_chars <- width - nchar(x)
 
 
 
-  if(align == "l")
-  {
-    res <- paste0(x,strrep(" ",extra_chars))
-  } else if(align == "r")
-  {
-    res <- paste0(strrep(" ",extra_chars),x)
-  } else if(align=="c")
-  {
-    left_chars <- floor(extra_chars/2)
+  if (align == "l") {
+    res <- paste0(x, strrep(" ", extra_chars))
+  } else if (align == "r") {
+    res <- paste0(strrep(" ", extra_chars), x)
+  } else if (align == "c") {
+    left_chars <- floor(extra_chars / 2)
     right_chars <- extra_chars - left_chars
-    res <- paste0(strrep(" ",left_chars),x,
-                  strrep(" ",right_chars))
+    res <- paste0(
+      strrep(" ", left_chars), x,
+      strrep(" ", right_chars)
+    )
   }
   res
-
 }
 
 #' @rdname justify
@@ -172,61 +159,54 @@ justify.character <- function(x,align = "left",na.rm=TRUE,...)
 #'
 #' @examples
 #'
-#' x <- c(TRUE,FALSE,NA)
+#' x <- c(TRUE, FALSE, NA)
 #'
 #' justify(x)
-#' justify(x,"long","lower","right")
-#' justify(x,form="long",align="centre")
-#' justify(x,form="numeric")
-#' justify(x,na.rm=TRUE)
-#'
-#'
+#' justify(x, "long", "lower", "right")
+#' justify(x, form = "long", align = "centre")
+#' justify(x, form = "numeric")
+#' justify(x, na.rm = TRUE)
+justify.logical <- function(x, form = "short", case = "upper", align = "left", na.rm = TRUE, ...) {
+  form <- tolower(substring(form, 1, 1))
+  case <- tolower(substring(case, 1, 1))
+  align <- tolower(substring(align, 1, 1))
 
-justify.logical <- function(x,form="short",case="upper",align="left",na.rm=TRUE,...)
-{
-  form <- tolower(substring(form,1,1))
-  case <- tolower(substring(case,1,1))
-  align <- tolower(substring(align,1,1))
-
-  if(form == "s")
-  {
+  if (form == "s") {
     align <- "l"
-    if(case == "c") case <- "u"
-  } else if(form == "n")
-  {
+    if (case == "c") case <- "u"
+  } else if (form == "n") {
     case <- "u"
     align <- "l"
   }
 
   lookup <- tibble::tribble(
-    ~form, ~case, ~align,    ~tru,    ~fal,      ~N,
-    "s",   "u",    "l",     "T",     "F",     "N",
-    "s",   "l",    "l",     "t",     "f",     "n",
-    "l",   "u",    "l", "TRUE ", "FALSE", "NA   ",
-    "l",   "u",    "r", " TRUE", "FALSE", "   NA",
-    "l",   "u",    "c", "TRUE ", "FALSE", " NA  ",
-    "l",   "l",    "l", "true ", "false", "na   ",
-    "l",   "l",    "r", " true", "false", "   na",
-    "l",   "l",    "c", "true ", "false", " na  ",
-    "l",   "c",    "l", "True ", "False", "Na   ",
-    "l",   "c",    "r", " True", "False", "   Na",
-    "l",   "c",    "r", "True ", "False", " Na  ",
-    "n",   "u",    "l",     "1",     "0",     " "
+    ~form, ~case, ~align, ~tru, ~fal, ~N,
+    "s", "u", "l", "T", "F", "N",
+    "s", "l", "l", "t", "f", "n",
+    "l", "u", "l", "TRUE ", "FALSE", "NA   ",
+    "l", "u", "r", " TRUE", "FALSE", "   NA",
+    "l", "u", "c", "TRUE ", "FALSE", " NA  ",
+    "l", "l", "l", "true ", "false", "na   ",
+    "l", "l", "r", " true", "false", "   na",
+    "l", "l", "c", "true ", "false", " na  ",
+    "l", "c", "l", "True ", "False", "Na   ",
+    "l", "c", "r", " True", "False", "   Na",
+    "l", "c", "r", "True ", "False", " Na  ",
+    "n", "u", "l", "1", "0", " "
   )
 
-  set <- dplyr::filter(lookup,.data$form == .env$form &
-                         .data$case == .env$case &
-                         .data$align == .env$align)
+  set <- dplyr::filter(lookup, .data$form == .env$form &
+    .data$case == .env$case &
+    .data$align == .env$align)
 
-  if(na.rm==T) set$N <- strrep(" ",nchar(set$tru))
+  if (na.rm == T) set$N <- strrep(" ", nchar(set$tru))
 
-  y <- rep("",length(x))
-  y[is.na(x)|is.nan(x)] <- set$N
+  y <- rep("", length(x))
+  y[is.na(x) | is.nan(x)] <- set$N
   y[x] <- set$tru
   y[!x] <- set$fal
 
   y
-
 }
 
 
@@ -239,14 +219,12 @@ justify.logical <- function(x,form="short",case="upper",align="left",na.rm=TRUE,
 #' `as.numeric()` is applied)
 #'
 
-justify.factor <- function(x,...,numeric=F) {
-  if(numeric)
-  {
-    justify.numeric(as.numeric(x),...,d=0)
+justify.factor <- function(x, ..., numeric = F) {
+  if (numeric) {
+    justify.numeric(as.numeric(x), ..., d = 0)
   } else {
-    justify.character(as.character(x),...)
+    justify.character(as.character(x), ...)
   }
-
 }
 
 #' @rdname justify
@@ -254,21 +232,6 @@ justify.factor <- function(x,...,numeric=F) {
 #'
 #'
 
-justify.default <- function(x,...)
-{
+justify.default <- function(x, ...) {
   as.character(x)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

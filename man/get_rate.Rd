@@ -24,14 +24,15 @@ Calculates the rate of change of a value, provided a time variable.
 \code{time} and \code{units} should be compatible with the \code{\link{lubridate}} package
 }
 \examples{
-x <- c(4,2,1,4,6,7,4,2,2,9)
-time <- lubridate::ymd(c("2000-08-23","2000-04-19","2000-10-12","2000-07-22","2000-12-13",
-"2000-06-20","2000-01-02","2000-11-12","2000-03-11","2000-08-04"))
-get_rate(x,time)
-
+x <- c(4, 2, 1, 4, 6, 7, 4, 2, 2, 9)
+time <- lubridate::ymd(c(
+  "2000-08-23", "2000-04-19", "2000-10-12", "2000-07-22", "2000-12-13",
+  "2000-06-20", "2000-01-02", "2000-11-12", "2000-03-11", "2000-08-04"
+))
+get_rate(x, time)
 \dontrun{
-df <- tibble::tibble(x,time) \%>\%
-dplyr::mutate(x.rate = get_rate(x,time,historic="average"))
+df <- tibble::tibble(x, time) \%>\%
+  dplyr::mutate(x.rate = get_rate(x, time, historic = "average"))
 }
 
 }

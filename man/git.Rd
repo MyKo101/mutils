@@ -20,7 +20,7 @@ git("push")
 }
 
 \dontrun{
-git("add -A","commit -m 'Commit Message'","push")
+git("add -A", "commit -m 'Commit Message'", "push")
 }
 
 }
