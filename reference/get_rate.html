@@ -81,7 +81,7 @@ time and units should be compatible with the lubridate package" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9013</span>
       </span>
     </div>
 
@@ -156,14 +156,15 @@ will take the average of these two measurements and return no <code>NA</code>s</
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>4</span>,<span class='fl'>6</span>,<span class='fl'>7</span>,<span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>9</span>)
-<span class='no'>time</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2000-08-23"</span>,<span class='st'>"2000-04-19"</span>,<span class='st'>"2000-10-12"</span>,<span class='st'>"2000-07-22"</span>,<span class='st'>"2000-12-13"</span>,
-<span class='st'>"2000-06-20"</span>,<span class='st'>"2000-01-02"</span>,<span class='st'>"2000-11-12"</span>,<span class='st'>"2000-03-11"</span>,<span class='st'>"2000-08-04"</span>))
-<span class='fu'>get_rate</span>(<span class='no'>x</span>,<span class='no'>time</span>)</div><div class='output co'>#&gt;  [1] -0.26315789  0.00000000 -0.06000000 -0.09375000  0.12903226  0.08064516
-#&gt;  [7]          NA  0.03225806 -0.02898551  0.38461538</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(<span class='no'>x</span>,<span class='no'>time</span>) <span class='kw'>%&gt;%</span>
-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>x.rate</span> <span class='kw'>=</span> <span class='fu'>get_rate</span>(<span class='no'>x</span>,<span class='no'>time</span>,<span class='kw'>historic</span><span class='kw'>=</span><span class='st'>"average"</span>))
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>7</span>, <span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>9</span>)
+<span class='no'>time</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+  <span class='st'>"2000-08-23"</span>, <span class='st'>"2000-04-19"</span>, <span class='st'>"2000-10-12"</span>, <span class='st'>"2000-07-22"</span>, <span class='st'>"2000-12-13"</span>,
+  <span class='st'>"2000-06-20"</span>, <span class='st'>"2000-01-02"</span>, <span class='st'>"2000-11-12"</span>, <span class='st'>"2000-03-11"</span>, <span class='st'>"2000-08-04"</span>
+))
+<span class='fu'>get_rate</span>(<span class='no'>x</span>, <span class='no'>time</span>)</div><div class='output co'>#&gt;  [1] -0.26315789  0.00000000 -0.06000000 -0.09375000  0.12903226  0.08064516
+#&gt;  [7]          NA  0.03225806 -0.02898551  0.38461538</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(<span class='no'>x</span>, <span class='no'>time</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>x.rate</span> <span class='kw'>=</span> <span class='fu'>get_rate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='kw'>historic</span> <span class='kw'>=</span> <span class='st'>"average"</span>))
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

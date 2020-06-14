@@ -82,7 +82,7 @@ to calculate an age, which means that leap years are also taken into account." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9013</span>
       </span>
     </div>
 
@@ -148,9 +148,8 @@ which the age is requested</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>birthdays</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>dmy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"01/01/1990"</span>,<span class='st'>"29/02/1992"</span>,<span class='st'>"31/12/2000"</span>,<span class='st'>"15/06/1995"</span>))
-<span class='fu'>get_age</span>(<span class='no'>birthdays</span>,<span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/now.html'>today</a></span>())</div><div class='output co'>#&gt; [1] 30 28 19 24</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>birthdays</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>dmy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"01/01/1990"</span>, <span class='st'>"29/02/1992"</span>, <span class='st'>"31/12/2000"</span>, <span class='st'>"15/06/1995"</span>))
+<span class='fu'>get_age</span>(<span class='no'>birthdays</span>, <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/now.html'>today</a></span>())</div><div class='output co'>#&gt; [1] 30 28 19 24</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
