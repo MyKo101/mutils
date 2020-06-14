@@ -26,7 +26,7 @@
 
 Get_Version <- function(dir=".")
 {
-  Desc_file <- readLines(paste0(dir,"/DESCRIPTION"))
+  Desc_file <- readLines(file.path(dir,"DESCRIPTION"))
   Version_row <- grep("^Version:",Desc_file)
   Version_raw <- Desc_file[Version_row]
   Version <- strsplit(Version_raw,split="[\\W]",perl=T)[[1]][-(1:2)]
@@ -44,22 +44,31 @@ Set_Version <- function(dir=".",Version)
 {
   Check_Version(Version)
   Version <- paste0(Version,collapse=".")
-  Version <- paste0("Version: ",Version)
 
-  Date_today <- paste0("Date: ",Sys.Date())
-
-  Desc_file <- readLines("DESCRIPTION")
-  Version_row <- grep("^Version:",Desc_file)
-  Desc_file[Version_row] <- Version
-
-  Date_row <- grep("^Date:",Desc_file)
-  if(length(Date_row) == 0)
+  if(file.exists(file.path(dir,"DESCRIPTION")))
   {
-    Date_row <- nrow(Desc_file) + 1
-  }
-  Desc_file[Date_row] <- Date_today
 
-  writeLines(Desc_file,"DESCRIPTION")
+    Date_today <- paste0(Sys.Date())
+
+    Desc_file <- readLines("DESCRIPTION")
+    Desc_file <- gsub("(^Version: ).*?($)",paste0("\\1",Version),Desc_file)
+    Desc_file <- gsub("(^Date: ).*?($)",paste0("\\1",Date_today),Desc_file)
+
+    writeLines(Desc_file,file.path(dir,"DESCRIPTION"))
+  }
+
+  if(file.exists(file.path(dir,"README.Rmd")))
+  {
+    New_Badge <- paste0("https://img.shields.io/badge/Version-",Version,"-orange.svg")
+
+    README_file <- readLines("README.Rmd")
+    README_file <- gsub("(\\s*?\\[!\\[Version Badge\\]\\().*?(\\)\\]\\(.*?\\))",
+                        paste0("\\1",New_Badge,"\\2"),README_file)
+
+    writeLines(README_file,file.path(dir,"README.Rmd"))
+
+  }
+
 }
 
 #' @rdname versioning
@@ -157,7 +166,7 @@ Match_Version_Github <- function(user=NULL,repo=NULL,ref="master",git_dir=NULL,d
   {
     if(is.null(repo))
     {
-      Desc_file <- readLines(paste0(dir,"/DESCRIPTION"))
+      Desc_file <- readLines(file.path(dir,"DESCRIPTION"))
       Package_row <- grep("^Package:",Desc_file)
       Package_raw <- Desc_file[Package_row]
       Package_name <- trimws(gsub("^Package: ","",Package_raw))
@@ -176,11 +185,12 @@ Match_Version_Github <- function(user=NULL,repo=NULL,ref="master",git_dir=NULL,d
     }
   }
 
-  basedir <- "https://raw.githubusercontent.com/"
-  dir <- paste(basedir,user,repo,ref,sep="/")
+  basedir <- "https://raw.githubusercontent.com"
+  gh_dir <- paste(basedir,user,repo,ref,sep="/")
 
-  GH_Version <- Get_Version(dir)
+  GH_Version <- Get_Version(gh_dir)
   Set_Version(dir = dir,Version = GH_Version)
   invisible(GH_Version)
 }
+
 

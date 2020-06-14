@@ -7,6 +7,8 @@
 
 [![R build
 status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](https://github.com/MyKo101/mutils/actions)
+[![Version
+Badge](https://img.shields.io/badge/Version-0.0.0.9012-orange.svg)](https://github.com/MyKo101/mutils)
 <!-- badges: end -->
 
 The goal of mutils is to provide useful functions to make data

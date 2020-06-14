@@ -129,7 +129,7 @@ update_my_package <- function(git_message = NULL, update_type="dev",
       cat0("\ndevtools::check() returned reports. Fix these and try again.")
     } else if(!is.null(git_message))
     {
-      cat0("\nNo report found, so uploading to git")
+      cat0("\nNo report found, so updated version and uploading to git")
       tryCatch(current_git <- git("config --get remote.origin.url")[2],
         warning=escalate_warning)
 
@@ -139,6 +139,13 @@ update_my_package <- function(git_message = NULL, update_type="dev",
       versions_chr <- sapply(versions,paste,collapse=".")
       cat0("trying to update from version",versions_chr["old"],
           "to version",versions_chr["new"],"\n")
+
+
+      cat0("Re-rendering README with new version")
+      rmarkdown::render("README.Rmd",output_format="github_document")
+      if(file.exists("README.html")) file.remove("README.html")
+
+
       git_message_ver <- paste0(git_message," ~ [v",versions_chr["new"],"]")
       cat0("Setting commit message to",git_message_ver)
       git_commit <- paste0("commit -a -m \"",git_message_ver,"\"")
