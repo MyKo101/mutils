@@ -46,7 +46,11 @@ Overall, this package is just a collection of functions that I've created as a d
 Please note that the mutils project is released with a [Contributor Code of Conduct](https://michaelbarrowman.co.uk/mutils/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 
-
+## Testing tibbles
+```{r}
+load_packages("tibble")
+tibble(x=runif(10),y=runif(10))
+```
 
 
 
