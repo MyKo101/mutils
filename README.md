@@ -38,3 +38,24 @@ here, and improvements on speed/efficiency are more than welcome.
 Please note that the mutils project is released with a [Contributor Code
 of Conduct](https://michaelbarrowman.co.uk/mutils/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+## Testing tibbles
+
+``` r
+load_packages("tibble")
+#> Loading required namespace: purrr
+tibble(x=runif(10),y=runif(10))
+#> [90m# A tibble: 10 x 2[39m
+#>         x      y
+#>     [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m
+#> [90m 1[39m 0.576  0.282 
+#> [90m 2[39m 0.336  0.695 
+#> [90m 3[39m 0.441  0.049[4m3[24m
+#> [90m 4[39m 0.386  0.388 
+#> [90m 5[39m 0.644  0.744 
+#> [90m 6[39m 0.022[4m3[24m 0.290 
+#> [90m 7[39m 0.594  0.554 
+#> [90m 8[39m 0.024[4m7[24m 0.809 
+#> [90m 9[39m 0.175  0.890 
+#> [90m10[39m 0.476  0.737
+```
