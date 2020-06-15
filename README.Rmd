@@ -30,11 +30,11 @@ The development version from [GitHub](https://github.com/) with:
 
 ```
 # install.packages("devtools")
-devtools::install_github("MyKo101/mutils")
+#devtools::install_github("MyKo101/mutils")
 ```
 
 ```{r include=F}
-library(mutils)
+#library(mutils)
 ```
 
 ## Overview
@@ -48,7 +48,7 @@ Please note that the mutils project is released with a [Contributor Code of Cond
 
 ## Testing tibbles
 ```{r}
-load_packages("tibble")
+library(tibble)
 tibble(x=runif(10),y=runif(10))
 ```
 
