@@ -14,12 +14,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
-      - name: Install remotes
-        run: Rscript -e 'install.packages("remotes")'
-      - name: Install Dependencies
-        run: Rscript -e 'remotes::install_deps(dependencies = TRUE)'
-      - name: Install mutils
-        run: R CMD INSTALL .
+      - name: Install tibble
+        run: Rscript -e 'install.packages("tibble")'
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
