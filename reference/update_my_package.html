@@ -127,14 +127,14 @@ and/or upload it via a git commit command (after appropriate checks)." />
 and/or upload it via a <code>git commit</code> command (after appropriate checks).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>reinstall_my_package</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)
+    <pre class="usage"><span class='fu'>reinstall_my_package</span>(dir = <span class='st'>"."</span>)
 
 <span class='fu'>update_my_package</span>(
-  <span class='kw'>git_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>update_type</span> <span class='kw'>=</span> <span class='st'>"dev"</span>,
-  <span class='kw'>ignore_notes</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>
+  git_message = <span class='kw'>NULL</span>,
+  update_type = <span class='st'>"dev"</span>,
+  ignore_notes = <span class='kw'>F</span>,
+  dir = <span class='st'>"."</span>,
+  verbose = <span class='kw'>F</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -147,10 +147,10 @@ If NULL, the current working directory will be used.</p></td>
     </tr>
     <tr>
       <th>git_message</th>
-      <td><p>git commit message to be passed to the <code><a href='git.html'>git()</a></code> function.
+      <td><p>git commit message to be passed to the <code>git()</code> function.
 If no <code>git_message</code> is provided, then the update will not be commited. If
 <code>git_message</code> is supplied, then <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> will be ran first.
-<code><a href='git.html'>git()</a></code> will not be ran if <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code> returns that there is something wrong
+<code>git()</code> will not be ran if <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code> returns that there is something wrong
 with the package.</p></td>
     </tr>
     <tr>

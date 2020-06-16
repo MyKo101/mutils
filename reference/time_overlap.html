@@ -125,7 +125,7 @@
     <p>Creates a sequence number for each set of overlapping intervals</p>
     </div>
 
-    <pre class="usage"><span class='fu'>time_overlap</span>(<span class='no'>start</span>, <span class='no'>end</span>)</pre>
+    <pre class="usage"><span class='fu'>time_overlap</span>(<span class='kw'>start</span>, <span class='kw'>end</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,28 +143,28 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>tbl</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span>(
-  ~<span class='no'>id</span>,          ~<span class='no'>t1</span>,          ~<span class='no'>t2</span>,
+<span class='kw'>tbl</span> <span class='op'>&lt;-</span> <span class='kw'>tibble</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span>(
+  <span class='op'>~</span><span class='kw'>id</span>,          <span class='op'>~</span><span class='kw'>t1</span>,          <span class='op'>~</span><span class='kw'>t2</span>,
   <span class='st'>"A"</span>, <span class='st'>"01/01/2020"</span>, <span class='st'>"04/01/2020"</span>,
   <span class='st'>"A"</span>, <span class='st'>"03/01/2020"</span>, <span class='st'>"15/01/2020"</span>,
   <span class='st'>"A"</span>, <span class='st'>"01/02/2020"</span>, <span class='st'>"15/02/2020"</span>,
   <span class='st'>"A"</span>, <span class='st'>"17/02/2020"</span>, <span class='st'>"23/02/2020"</span>,
   <span class='st'>"B"</span>, <span class='st'>"13/02/2020"</span>, <span class='st'>"18/02/2020"</span>,
   <span class='st'>"B"</span>, <span class='st'>"16/02/2020"</span>, <span class='st'>"20/02/2020"</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_at</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>t1</span>, <span class='no'>t2</span>), <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='no'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>dmy</a></span>)
+) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_at</a></span>(<span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='kw'>t1</span>, <span class='kw'>t2</span>), <span class='kw'>lubridate</span>::<span class='kw'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>dmy</a></span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>tbl</span>$<span class='no'>t1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>tbl</span>), <span class='kw'>col</span> <span class='kw'>=</span> (<span class='no'>tbl</span>$<span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"A"</span>) + <span class='fl'>1</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>tbl</span>$<span class='no'>t1</span>, <span class='no'>tbl</span>$<span class='no'>t2</span>)
-)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>tbl</span>$<span class='no'>t2</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>tbl</span>), <span class='kw'>col</span> <span class='kw'>=</span> (<span class='no'>tbl</span>$<span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"A"</span>) + <span class='fl'>1</span>)</div><div class='input'><span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>tbl</span>)) {
-  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>tbl</span>$<span class='no'>t1</span>[<span class='no'>i</span>], <span class='no'>tbl</span>$<span class='no'>t2</span>[<span class='no'>i</span>]), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>i</span>, <span class='no'>i</span>), <span class='kw'>col</span> <span class='kw'>=</span> (<span class='no'>tbl</span>$<span class='no'>id</span>[<span class='no'>i</span>] <span class='kw'>==</span> <span class='st'>"A"</span>) + <span class='fl'>1</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  x = <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t1</span>, y = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>tbl</span>), col = (<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>id</span> <span class='op'>==</span> <span class='st'>"A"</span>) <span class='op'>+</span> <span class='fl'>1</span>,
+  xlim = <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t1</span>, <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t2</span>)
+)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(x = <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t2</span>, y = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>tbl</span>), col = (<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>id</span> <span class='op'>==</span> <span class='st'>"A"</span>) <span class='op'>+</span> <span class='fl'>1</span>)</div><div class='input'><span class='co'>for</span> (<span class='kw'>i</span> <span class='co'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>tbl</span>)) {
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t1</span>[<span class='kw'>i</span>], <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t2</span>[<span class='kw'>i</span>]), y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>i</span>, <span class='kw'>i</span>), col = (<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>id</span>[<span class='kw'>i</span>] <span class='op'>==</span> <span class='st'>"A"</span>) <span class='op'>+</span> <span class='fl'>1</span>)
 }</div><div class='img'><img src='time_overlap-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>tbl</span>$<span class='no'>seq</span> <span class='kw'>&lt;-</span> <span class='fu'>time_overlap</span>(<span class='no'>tbl</span>$<span class='no'>t1</span>, <span class='no'>tbl</span>$<span class='no'>t2</span>)
+<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>seq</span> <span class='op'>&lt;-</span> <span class='fu'>time_overlap</span>(<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t1</span>, <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>t2</span>)
 
-<span class='no'>tbl</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>id</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>seq</span> <span class='kw'>=</span> <span class='fu'>time_overlap</span>(<span class='no'>t1</span>, <span class='no'>t2</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
+<span class='kw'>tbl</span> <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>id</span>) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(seq = <span class='fu'>time_overlap</span>(<span class='kw'>t1</span>, <span class='kw'>t2</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   id [2]</span><span>
 #&gt;   id    t1         t2           seq
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

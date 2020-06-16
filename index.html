@@ -103,21 +103,53 @@
 <div id="testing-tibbles" class="section level2">
 <h2 class="hasAnchor">
 <a href="#testing-tibbles" class="anchor"></a>Testing tibbles</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>),<span class="kw">y</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>))
+<p>Example Output:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://tibble.tidyverse.org">tibble</a></span>)
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(x=<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>),y=<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>))
 <span class="co">#&gt; [90m# A tibble: 10 x 2[39m</span>
-<span class="co">#&gt;         x      y</span>
-<span class="co">#&gt;     [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [90m 1[39m 0.101  0.838 </span>
-<span class="co">#&gt; [90m 2[39m 0.682  0.252 </span>
-<span class="co">#&gt; [90m 3[39m 0.427  0.676 </span>
-<span class="co">#&gt; [90m 4[39m 0.832  0.073[4m6[24m</span>
-<span class="co">#&gt; [90m 5[39m 0.732  0.567 </span>
-<span class="co">#&gt; [90m 6[39m 0.855  0.147 </span>
-<span class="co">#&gt; [90m 7[39m 0.057[4m5[24m 0.695 </span>
-<span class="co">#&gt; [90m 8[39m 0.136  0.556 </span>
-<span class="co">#&gt; [90m 9[39m 0.197  0.912 </span>
-<span class="co">#&gt; [90m10[39m 0.825  0.059[4m3[24m</span></pre></div>
+<span class="co">#&gt;         x     y</span>
+<span class="co">#&gt;     [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m</span>
+<span class="co">#&gt; [90m 1[39m 0.309  0.214</span>
+<span class="co">#&gt; [90m 2[39m 0.218  0.545</span>
+<span class="co">#&gt; [90m 3[39m 0.490  0.567</span>
+<span class="co">#&gt; [90m 4[39m 0.083[4m4[24m 0.291</span>
+<span class="co">#&gt; [90m 5[39m 0.131  0.106</span>
+<span class="co">#&gt; [90m 6[39m 0.299  0.688</span>
+<span class="co">#&gt; [90m 7[39m 0.928  0.276</span>
+<span class="co">#&gt; [90m 8[39m 0.747  0.841</span>
+<span class="co">#&gt; [90m 9[39m 0.383  0.656</span>
+<span class="co">#&gt; [90m10[39m 0.498  0.925</span>
+</pre></div>
+<p>Session Info:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<span class="co">#&gt; R version 3.6.3 (2020-02-29)</span>
+<span class="co">#&gt; Platform: x86_64-apple-darwin15.6.0 (64-bit)</span>
+<span class="co">#&gt; Running under: macOS Catalina 10.15.5</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Matrix products: default</span>
+<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib</span>
+<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; locale:</span>
+<span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; attached base packages:</span>
+<span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; other attached packages:</span>
+<span class="co">#&gt; [1] tibble_3.0.1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; loaded via a namespace (and not attached):</span>
+<span class="co">#&gt;  [1] Rcpp_1.0.4.6     fansi_0.4.1      utf8_1.1.4       assertthat_0.2.1</span>
+<span class="co">#&gt;  [5] crayon_1.3.4     digest_0.6.25    lifecycle_0.2.0  magrittr_1.5    </span>
+<span class="co">#&gt;  [9] evaluate_0.14    pillar_1.4.4     cli_2.0.2        rlang_0.4.6     </span>
+<span class="co">#&gt; [13] stringi_1.4.6    vctrs_0.3.1      ellipsis_0.3.1   rmarkdown_2.2   </span>
+<span class="co">#&gt; [17] tools_3.6.3      stringr_1.4.0    glue_1.4.1       xfun_0.14       </span>
+<span class="co">#&gt; [21] yaml_2.2.1       compiler_3.6.3   pkgconfig_2.0.3  htmltools_0.4.0 </span>
+<span class="co">#&gt; [25] knitr_1.28</span>
+</pre></div>
 </div>
 </div>
   </div>

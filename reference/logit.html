@@ -125,9 +125,9 @@
     <p>Calculates the logit (or log-odds) value of a probability</p>
     </div>
 
-    <pre class="usage"><span class='fu'>logit</span>(<span class='no'>p</span>)
+    <pre class="usage"><span class='fu'>logit</span>(<span class='kw'>p</span>)
 
-<span class='fu'>unlogit</span>(<span class='no'>a</span>)</pre>
+<span class='fu'>unlogit</span>(<span class='kw'>a</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,13 +145,13 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>probs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>100</span>)
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>logit</span>(<span class='no'>probs</span>)
+<span class='kw'>probs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>100</span>)
+<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='fu'>logit</span>(<span class='kw'>probs</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>probs</span>, <span class='no'>a</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='logit-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>probs0</span> <span class='kw'>&lt;-</span> <span class='fu'>unlogit</span>(<span class='no'>a</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>probs</span>, <span class='kw'>a</span>, xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='logit-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>probs0</span> <span class='op'>&lt;-</span> <span class='fu'>unlogit</span>(<span class='kw'>a</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>probs</span>, <span class='no'>probs0</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='logit-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>probs</span>, <span class='kw'>probs0</span>, xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), ylim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='logit-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
