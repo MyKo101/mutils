@@ -43,7 +43,7 @@ unload_packages <- function(...) {
   pkgs <- vapply(quo_pkgs,as_name,character(1))
   pkgs <- paste0("package:", pkgs)
 
-  lapply(pkgs,detach, character.only = T, unload = T)
+  res <- invisible(lapply(pkgs,detach, character.only = T, unload = T))
 }
 
 

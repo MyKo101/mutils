@@ -9,7 +9,7 @@ reference:
   - title: "Evaluation"
     desc: "Functions to be used in function creation"
   - contents:
-    - escalate_warnings
+    - escalate_warning
     - chatty
 
   - title: "Package Management"
