@@ -81,7 +81,7 @@ Then loads them ready for use. unload_packages unloads packages, see detach" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9015</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9016</span>
       </span>
     </div>
 
@@ -147,12 +147,7 @@ Then loads them ready for use. <code>unload_packages</code> unloads packages, se
     <pre class="examples"><div class='input'><span class='fu'>load_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>,<span class='kw'>stringi</span>,<span class='kw'>lubridate</span>)
 <span class='fu'>unload_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: ‘magrittr’ namespace cannot be unloaded:</span>
 #&gt; <span class='warning'>  namespace ‘magrittr’ is imported by ‘purrr’, ‘mutils’, ‘dplyr’, ‘pkgdown’, ‘tibble’ so cannot be unloaded</span></div><div class='output co'>#&gt; <span class='warning'>Warning: ‘purrr’ namespace cannot be unloaded:</span>
-#&gt; <span class='warning'>  namespace ‘purrr’ is imported by ‘tidyselect’ so cannot be unloaded</span></div><div class='output co'>#&gt; [[1]]
-#&gt; NULL
-#&gt; 
-#&gt; [[2]]
-#&gt; NULL
-#&gt; </div><div class='input'>
+#&gt; <span class='warning'>  namespace ‘purrr’ is imported by ‘tidyselect’ so cannot be unloaded</span></div><div class='input'>
 <span class='fu'>reload_packages</span>(<span class='kw'>stringi</span>,<span class='kw'>lubridate</span>)
 
 </div></pre>
