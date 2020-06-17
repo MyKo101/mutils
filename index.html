@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9014</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#devtools::install_github("MyKo101/mutils")</span></span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"MyKo101/mutils"</span>)</span></code></pre></div>
 </div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
@@ -99,112 +99,6 @@
 <h2 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
 <p>Please note that the mutils project is released with a <a href="https://michaelbarrowman.co.uk/mutils/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
-</div>
-<div id="testing-tibbles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#testing-tibbles" class="anchor"></a>Testing tibbles</h2>
-<p>Example Output:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://tibble.tidyverse.org">tibble</a></span>)
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(x=<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>),y=<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>))
-<span class="co">#&gt; # A tibble: 10 x 2</span>
-<span class="co">#&gt;         x      y</span>
-<span class="co">#&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 0.0249 0.525 </span>
-<span class="co">#&gt;  2 0.0541 0.0381</span>
-<span class="co">#&gt;  3 0.381  0.241 </span>
-<span class="co">#&gt;  4 0.0293 0.974 </span>
-<span class="co">#&gt;  5 0.951  0.130 </span>
-<span class="co">#&gt;  6 0.970  0.582 </span>
-<span class="co">#&gt;  7 0.787  0.807 </span>
-<span class="co">#&gt;  8 0.736  0.940 </span>
-<span class="co">#&gt;  9 0.737  0.612 </span>
-<span class="co">#&gt; 10 0.834  0.766</span>
-</pre></div>
-<p>Session Info:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
-<span class="co">#&gt; R version 3.6.3 (2020-02-29)</span>
-<span class="co">#&gt; Platform: x86_64-apple-darwin15.6.0 (64-bit)</span>
-<span class="co">#&gt; Running under: macOS Catalina 10.15.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib</span>
-<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; locale:</span>
-<span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attached base packages:</span>
-<span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] tibble_3.0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] fansi_0.4.1      utf8_1.1.4       assertthat_0.2.1 digest_0.6.25   </span>
-<span class="co">#&gt;  [5] crayon_1.3.4     lifecycle_0.2.0  magrittr_1.5     evaluate_0.14   </span>
-<span class="co">#&gt;  [9] pillar_1.4.4     cli_2.0.2        rlang_0.4.6      stringi_1.4.6   </span>
-<span class="co">#&gt; [13] vctrs_0.3.1      ellipsis_0.3.1   rmarkdown_2.2    tools_3.6.3     </span>
-<span class="co">#&gt; [17] stringr_1.4.0    glue_1.4.1       xfun_0.14        yaml_2.2.1      </span>
-<span class="co">#&gt; [21] compiler_3.6.3   pkgconfig_2.0.3  htmltools_0.5.0  knitr_1.28</span>
-</pre></div>
-<p>Calling has color in crayon</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">crayon</span>:::<span class="fu"><a href="https://rdrr.io/pkg/crayon/man/has_color.html">has_color</a></span>()
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
-<p>It returns positive. Should it? Break apart the <code>has_color()</code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-  <span class="kw">enabled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"crayon.enabled"</span>)
-  <span class="kw">enabled</span>
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-  <span class="kw">crayon</span>:::<span class="fu">rstudio_with_ansi_support</span>()
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-  <span class="fu"><a href="https://rdrr.io/r/base/sink.html">sink.number</a></span>()
-<span class="co">#&gt; [1] 1</span>
-</pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-  <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">isatty</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">stdout</a></span>())
-<span class="co">#&gt; [1] TRUE</span>
-</pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-  <span class="kw">crayon</span>:::<span class="fu">os_type</span>()
-<span class="co">#&gt; [1] "unix"</span>
-</pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"ConEmuANSI"</span>)
-<span class="co">#&gt; [1] ""</span>
-</pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CMDER_ROOT"</span>)
-<span class="co">#&gt; [1] ""</span>
-</pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-  <span class="kw">crayon</span>:::<span class="fu">inside_emacs</span>()
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-  <span class="kw">crayon</span>:::<span class="fu">emacs_version</span>()
-<span class="co">#&gt; [1] NA</span>
-</pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-  <span class="st">"COLORTERM"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>())
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"TERM"</span>)
-<span class="co">#&gt; [1] ""</span>
-</pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-  <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"^screen|^xterm|^vt100|color|ansi|cygwin|linux"</span>, 
-        <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"TERM"</span>), ignore.case = <span class="fl">TRUE</span>, perl = <span class="fl">TRUE</span>)
-<span class="co">#&gt; [1] FALSE</span>
-</pre></div>
 </div>
 </div>
   </div>
@@ -242,7 +136,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/MyKo101/mutils/actions"><img src="https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://github.com/MyKo101/mutils"><img src="https://img.shields.io/badge/Version-0.0.0.9013-orange.svg" alt="Version Badge"></a></li>
+<li><a href="https://github.com/MyKo101/mutils"><img src="https://img.shields.io/badge/Version-0.0.0.9014-orange.svg" alt="Version Badge"></a></li>
 </ul>
 </div>
 </div>
