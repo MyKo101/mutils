@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options(crayon.enabled = NULL)
 ```
 
 # mutils <img src='man/figures/logo.png' align="right" height="138.5" />
@@ -18,7 +19,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 
  [![R build status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](https://github.com/MyKo101/mutils/actions)
- [![Version Badge](https://img.shields.io/badge/Version-0.0.0.9013-orange.svg)](https://github.com/MyKo101/mutils)
+ [![Version Badge](https://img.shields.io/badge/Version-0.0.0.9014-orange.svg)](https://github.com/MyKo101/mutils)
  
 <!-- badges: end -->
 
@@ -44,12 +45,5 @@ Overall, this package is just a collection of functions that I've created as a d
 ## Code of Conduct
 
 Please note that the mutils project is released with a [Contributor Code of Conduct](https://michaelbarrowman.co.uk/mutils/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
-
-
-
-
-
-
-
 
 
