@@ -148,7 +148,7 @@ Check_Version <- function(Version) {
 #' Looks for `DESCRIPTION` at the address:`"https://raw.githubusercontent.com/<user>/<repo>/<ref>/"`
 #'
 #' @export
-Match_Version_Github <- function(user = NULL, repo = NULL, ref = "master", git_dir = NULL, dir = ".") {
+Match_Version_Github <- function(user = NULL, repo = NULL, ref = "main", git_dir = NULL, dir = ".") {
   if (is.null(user) & is.null(git_dir)) {
     rlang::abort("Either git_dir or user must be supplied")
   } else if (is.null(git_dir)) {
@@ -166,7 +166,7 @@ Match_Version_Github <- function(user = NULL, repo = NULL, ref = "master", git_d
     if (length(git_dir_split) == 9) {
       ref <- git_dir_split[8]
     } else {
-      ref <- "master"
+      ref <- "main"
     }
   }
 

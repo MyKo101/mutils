@@ -23,7 +23,7 @@ Check_Version(Version)
 Match_Version_Github(
   user = NULL,
   repo = NULL,
-  ref = "master",
+  ref = "main",
   git_dir = NULL,
   dir = "."
 )

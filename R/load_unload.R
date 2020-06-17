@@ -7,50 +7,49 @@
 #' \code{load_packages} checks if a vector of packages are installed, if not, installs them.
 #' Then loads them ready for use. \code{unload_packages} unloads packages, see \code{\link{detach}}
 #'
-#' @param pkgs
-#' character list of package names
-#'
 #' @param ...
-#' additional arguments to be passed to \code{library} or \code{detach}
+#' list of packages to be passed loaded or unloaded
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' load_packages(c("dplyr", "tibble"))
-#' unload_packages(c("dplyr", "tibble"))
+#' load_packages(magrittr,purrr,stringi,lubridate)
+#' unload_packages(magrittr,purrr)
 #'
-#' reload_packages(c("dplyr", "tibble"))
-#' }
+#' reload_packages(stringi,lubridate)
 #'
-load_packages <- function(pkgs, ...) {
-  requireNamespace("purrr")
+#'
+load_packages <- function(...) {
+  quo_pkgs <- as.list(enquos(...))
+  pkgs <- vapply(quo_pkgs,as_name,character(1))
   already_installed_list <- rownames(utils::installed.packages())
   already_installed <- pkgs %in% already_installed_list
 
   if (any(!already_installed)) {
     tryCatch(utils::install.packages(pkgs[!already_installed]),
-      error = utils::install.packages(pkgs[!already_installed], repos = "https://www.stats.bris.ac.uk/R/")
+      error = utils::install.packages(pkgs[!already_installed], repos =  getOption("repos"))
     )
   }
 
-  purrr::walk(pkgs, library, character.only = T, ...)
+  res <- lapply(pkgs,library,character.only=T,warn.conflicts=F)
+
 }
 
 #' @rdname load_unload
 #' @export
 
-unload_packages <- function(pkgs, ...) {
-  requireNamespace("purrr")
+unload_packages <- function(...) {
+  quo_pkgs <- as.list(enquos(...))
+  pkgs <- vapply(quo_pkgs,as_name,character(1))
   pkgs <- paste0("package:", pkgs)
 
-  purrr::walk(pkgs, detach, character.only = T, unload = T, ...)
+  lapply(pkgs,detach, character.only = T, unload = T)
 }
 
 
 #' @rdname load_unload
 #' @export
-reload_packages <- function(pkgs, ...) {
-  unload_packages(pkgs, ...)
-  load_packages(pkgs, ...)
+reload_packages <- function(...) {
+  unload_packages(...)
+  load_packages(...)
 }

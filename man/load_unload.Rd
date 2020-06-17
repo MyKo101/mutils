@@ -7,27 +7,24 @@
 \alias{reload_packages}
 \title{Load or Unload packages}
 \usage{
-load_packages(pkgs, ...)
+load_packages(...)
 
-unload_packages(pkgs, ...)
+unload_packages(...)
 
-reload_packages(pkgs, ...)
+reload_packages(...)
 }
 \arguments{
-\item{pkgs}{character list of package names}
-
-\item{...}{additional arguments to be passed to \code{library} or \code{detach}}
+\item{...}{list of packages to be passed loaded or unloaded}
 }
 \description{
 \code{load_packages} checks if a vector of packages are installed, if not, installs them.
 Then loads them ready for use. \code{unload_packages} unloads packages, see \code{\link{detach}}
 }
 \examples{
-\dontrun{
-load_packages(c("dplyr", "tibble"))
-unload_packages(c("dplyr", "tibble"))
+load_packages(magrittr,purrr,stringi,lubridate)
+unload_packages(magrittr,purrr)
 
-reload_packages(c("dplyr", "tibble"))
-}
+reload_packages(stringi,lubridate)
+
 
 }
