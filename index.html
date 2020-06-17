@@ -110,16 +110,16 @@
 <span class="co">#&gt; [90m# A tibble: 10 x 2[39m</span>
 <span class="co">#&gt;        x     y</span>
 <span class="co">#&gt;    [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [90m 1[39m 0.790 0.668</span>
-<span class="co">#&gt; [90m 2[39m 0.747 0.808</span>
-<span class="co">#&gt; [90m 3[39m 0.692 0.496</span>
-<span class="co">#&gt; [90m 4[39m 0.870 0.538</span>
-<span class="co">#&gt; [90m 5[39m 0.463 0.452</span>
-<span class="co">#&gt; [90m 6[39m 0.406 0.633</span>
-<span class="co">#&gt; [90m 7[39m 0.491 0.871</span>
-<span class="co">#&gt; [90m 8[39m 0.192 0.645</span>
-<span class="co">#&gt; [90m 9[39m 0.276 0.780</span>
-<span class="co">#&gt; [90m10[39m 0.393 0.179</span>
+<span class="co">#&gt; [90m 1[39m 0.914 0.695</span>
+<span class="co">#&gt; [90m 2[39m 0.551 0.343</span>
+<span class="co">#&gt; [90m 3[39m 0.734 0.956</span>
+<span class="co">#&gt; [90m 4[39m 0.190 0.219</span>
+<span class="co">#&gt; [90m 5[39m 0.419 0.721</span>
+<span class="co">#&gt; [90m 6[39m 0.877 0.154</span>
+<span class="co">#&gt; [90m 7[39m 0.396 0.880</span>
+<span class="co">#&gt; [90m 8[39m 0.955 0.995</span>
+<span class="co">#&gt; [90m 9[39m 0.257 0.269</span>
+<span class="co">#&gt; [90m10[39m 0.857 0.326</span>
 </pre></div>
 <p>Session Info:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
@@ -153,6 +153,57 @@
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">crayon</span>:::<span class="fu"><a href="https://rdrr.io/pkg/crayon/man/has_color.html">has_color</a></span>()
 <span class="co">#&gt; [1] TRUE</span>
+</pre></div>
+<p>It returns positive. Should it? Break apart the <code>has_color()</code> function:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+  <span class="kw">enabled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"crayon.enabled"</span>)
+  <span class="kw">enabled</span>
+<span class="co">#&gt; [1] TRUE</span>
+</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+  <span class="kw">crayon</span>:::<span class="fu">rstudio_with_ansi_support</span>()
+<span class="co">#&gt; [1] FALSE</span>
+</pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/sink.html">sink.number</a></span>()
+<span class="co">#&gt; [1] 1</span>
+</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+  <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">isatty</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">stdout</a></span>())
+<span class="co">#&gt; [1] TRUE</span>
+</pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+  <span class="kw">crayon</span>:::<span class="fu">os_type</span>()
+<span class="co">#&gt; [1] "unix"</span>
+</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"ConEmuANSI"</span>)
+<span class="co">#&gt; [1] ""</span>
+</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"CMDER_ROOT"</span>)
+<span class="co">#&gt; [1] ""</span>
+</pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+  <span class="kw">crayon</span>:::<span class="fu">inside_emacs</span>()
+<span class="co">#&gt; [1] FALSE</span>
+</pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+  <span class="kw">crayon</span>:::<span class="fu">emacs_version</span>()
+<span class="co">#&gt; [1] NA</span>
+</pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+  <span class="st">"COLORTERM"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>())
+<span class="co">#&gt; [1] FALSE</span>
+</pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"TERM"</span>)
+<span class="co">#&gt; [1] ""</span>
+</pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"^screen|^xterm|^vt100|color|ansi|cygwin|linux"</span>, 
+        <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"TERM"</span>), ignore.case = <span class="fl">TRUE</span>, perl = <span class="fl">TRUE</span>)
+<span class="co">#&gt; [1] FALSE</span>
 </pre></div>
 </div>
 </div>
