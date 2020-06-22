@@ -81,7 +81,7 @@ Then loads them ready for use. unload_packages unloads packages, see detach" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9016</span>
       </span>
     </div>
 
@@ -144,12 +144,12 @@ Then loads them ready for use. <code>unload_packages</code> unloads packages, se
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>load_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>,<span class='kw'>stringi</span>,<span class='kw'>lubridate</span>)
-<span class='fu'>unload_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>)
-
+    <pre class="examples"><div class='input'><span class='fu'>load_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>,<span class='kw'>stringi</span>,<span class='kw'>lubridate</span>)
+<span class='fu'>unload_packages</span>(<span class='kw'>magrittr</span>,<span class='kw'>purrr</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: ‘magrittr’ namespace cannot be unloaded:</span>
+#&gt; <span class='warning'>  namespace ‘magrittr’ is imported by ‘purrr’, ‘mutils’, ‘dplyr’, ‘pkgdown’, ‘tibble’ so cannot be unloaded</span></div><div class='output co'>#&gt; <span class='warning'>Warning: ‘purrr’ namespace cannot be unloaded:</span>
+#&gt; <span class='warning'>  namespace ‘purrr’ is imported by ‘tidyselect’ so cannot be unloaded</span></div><div class='input'>
 <span class='fu'>reload_packages</span>(<span class='kw'>stringi</span>,<span class='kw'>lubridate</span>)
-}
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
