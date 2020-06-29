@@ -5,11 +5,13 @@ reference:
   - contents:
     - justify
     - set_whitespace
+    - get_function_string
 
   - title: "Evaluation"
     desc: "Functions to be used in function creation"
   - contents:
     - escalate_warning
+    - glue_abort
     - chatty
 
   - title: "Package Management"
@@ -23,6 +25,7 @@ reference:
   - title: "Processing"
     desc: "Functions to help with processing of data"
   - contents:
+    - filter_bits
     - get_age
     - time_overlap
     - get_rate

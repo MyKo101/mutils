@@ -8,7 +8,7 @@
 [![R build
 status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](https://github.com/MyKo101/mutils/actions)
 [![Version
-Badge](https://img.shields.io/badge/Version-0.0.0.9016-orange.svg)](https://github.com/MyKo101/mutils)
+Badge](https://img.shields.io/badge/Version-0.0.0.9017-orange.svg)](https://github.com/MyKo101/mutils)
 
 <!-- badges: end -->
 
@@ -20,8 +20,9 @@ than “innovative”.
 
 The development version from [GitHub](https://github.com/) with:
 
-    # install.packages("devtools")
+    install.packages("devtools")
     devtools::install_github("MyKo101/mutils")
+    library(mutils)
 
 ## Overview
 
