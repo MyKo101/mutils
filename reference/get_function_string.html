@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • mutils</title>
+<title>Simplify a function to a string — get_function_string • mutils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Simplify a function to a string — get_function_string" />
+<meta property="og:description" content="Extracts the details of a function as either it's name, or
+(if anonymous), some minimal details about it." />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -116,19 +117,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Simplify a function to a string</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/get_function_string.R'><code>R/get_function_string.R</code></a></small>
+    <div class="hidden name"><code>get_function_string.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Extracts the details of a function as either it's name, or
+(if anonymous), some minimal details about it.</p>
     </div>
 
-    <pre class="usage"><span class='kw'>lhs</span> <span class='op'>%&gt;%</span> <span class='kw'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>get_function_string</span>(<span class='kw'>f</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>f</th>
+      <td><p>function to be coerced to string</p></td>
+    </tr>
+    </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>f</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='kw'>x</span><span class='op'>+</span><span class='fl'>1</span>
 
+<span class='fu'>get_function_string</span>(<span class='kw'>f</span>)</div><div class='output co'>#&gt; [1] "f"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='kw'>x</span><span class='op'>+</span><span class='fl'>1</span>
+)</div><div class='output co'>#&gt; [1] "x + 1"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
+)</div><div class='output co'>#&gt; [1] "mean(1:10)"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='kw'>stats</span>::<span class='fu'>mean</span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
+)</div><div class='output co'>#&gt; [1] "stats::mean(1:10)"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>) (<span class='kw'>x</span><span class='op'>+</span><span class='fl'>1</span>)
+)</div><div class='output co'>#&gt; [1] "(x + 1)"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>) (<span class='fl'>3</span><span class='op'>*</span><span class='kw'>x</span><span class='op'>+</span><span class='fl'>1</span>)<span class='op'>/</span><span class='fl'>2</span>
+)</div><div class='output co'>#&gt; [1] "(3 * x + 1)/2"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>){
+  <span class='kw'>x</span><span class='op'>+</span><span class='fl'>2</span>
+})</div><div class='output co'>#&gt; [1] "{ x + 2 }"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>){
+  <span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='kw'>x</span><span class='op'>+</span><span class='fl'>2</span>
+  <span class='kw'>x</span><span class='op'>+</span><span class='kw'>y</span>
+})</div><div class='output co'>#&gt; [1] "{ y &lt;- x + 2; x + y }"</div><div class='input'><span class='fu'>get_function_string</span>(
+  <span class='fu'>function</span>(<span class='kw'>x</span>){
+  <span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='kw'>x</span><span class='op'>+</span><span class='fl'>2</span>
+  <span class='kw'>x</span><span class='op'>+</span><span class='kw'>y</span>
+  <span class='kw'>y</span><span class='op'>^</span><span class='fl'>2</span>
+})</div><div class='output co'>#&gt; [1] "{ y &lt;- x + 2; ... }"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • mutils</title>
+<title>Signal an error or warning using glue — glue_abort • mutils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,13 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Signal an error or warning using glue — glue_abort" />
+<meta property="og:description" content="These functions act as wrappers around rlang::abort() and
+rlang::warn() to allow the glue-style insertion of variables
+names. By default, object names are parsed via substitute(),
+rather than evaluated, meaning that the objects do not need to be
+coerced to strings. This is useful inside functions to grab the
+variable name passed by the user" />
 <meta property="og:image" content="https://michaelbarrowman.co.uk/mutils/logo.png" />
 
 
@@ -116,19 +121,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Signal an error or warning using glue</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MyKo101/mutils/blob/master/R/glue_abort.R'><code>R/glue_abort.R</code></a></small>
+    <div class="hidden name"><code>glue_abort.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>These functions act as wrappers around <code><a href='https://rlang.r-lib.org/reference/abort.html'>rlang::abort()</a></code> and
+<code><a href='https://rlang.r-lib.org/reference/abort.html'>rlang::warn()</a></code> to allow the <code>glue</code>-style insertion of variables
+names. By default, object names are parsed via <code><a href='https://rdrr.io/r/base/substitute.html'>substitute()</a></code>,
+rather than evaluated, meaning that the objects do not need to be
+coerced to strings. This is useful inside functions to grab the
+variable name passed by the user</p>
     </div>
 
-    <pre class="usage"><span class='kw'>lhs</span> <span class='op'>%&gt;%</span> <span class='kw'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>glue_abort</span>(<span class='kw'>msg</span>, <span class='kw'>...</span>, sub = <span class='kw'>T</span>)
+
+<span class='fu'>glue_warn</span>(<span class='kw'>msg</span>, <span class='kw'>...</span>, sub = <span class='kw'>T</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>msg</th>
+      <td><p>Message to be passed as either an error or a warning</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to be passed to <code><a href='https://rlang.r-lib.org/reference/abort.html'>rlang::abort()</a></code> or <code><a href='https://rlang.r-lib.org/reference/abort.html'>rlang::warn()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>sub</th>
+      <td><p>should the <code><a href='https://rdrr.io/r/base/substitute.html'>substitute()</a></code> function be wrapped around the elements
+of <code>msg</code></p></td>
+    </tr>
+    </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>f</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input_argument</span>)
+{
+  <span class='fu'>glue_abort</span>(<span class='st'>"Error is with {input_argument}"</span>)
+}
 
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='st'>"Show My Name, Not My String"</span>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>f</span>(<span class='kw'>x</span>)
+<span class='fu'>f</span>(<span class='st'>"Show Me"</span>)
+}
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
