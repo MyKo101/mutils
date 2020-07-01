@@ -13,7 +13,7 @@
 NULL
 
 #' @describeIn update_my_package performs a few functions to quickly and automatically
-#' update a package. It performs the following:
+#' update a package. In simple terms, it performs the following:
 #'
 #' * `devtools::document()`
 #' * `rmarkdown::render("README.Rmd")`
@@ -40,15 +40,20 @@ reinstall_my_package <- function(dir = ".") {
   devtools::load_all(pkg)
 }
 
-#' @describeIn update_my_package checks if a package will
-#' pass `R CMD CHECK` and if it will, uploads it via a git command
+#' @describeIn update_my_package is much more thorough than
+#' `reinstall_my_package()`. It also ensures the package files are
+#' styled according to the tidyverse style guide (essential as per
+#' `usethis::use_tidy_style(strict=T)`. It then performs an `R CMD CHECK`
+#' on the package to ensure it works robustly. If the check passes
+#' (i.e. it doesn't throw an Error, Warning or Note), then it will
+#' update the package version (in the `DESCRIPTION` file), and then
+#' `commit` and `push` the package to `git`.
 #'
 #' @param git_message
 #' git commit message to be passed to the `git()` function.
-#' If no `git_message` is provided, then the update will not be commited. If
-#' `git_message` is supplied, then `devtools::check()` will be ran first.
-#' `git()` will not be ran if `check()` returns that there is something wrong
-#' with the package.
+#' If no `git_message` is provided, then the update will not be commited.
+#' If `git_message` is supplied, then it will be used as the
+#' `git commit` message if used.
 #'
 #' @param update_type
 #' what level of update version to use.
@@ -99,6 +104,7 @@ update_my_package <- function(git_message = NULL, update_type = "dev",
     )
   } else {
     cat0("\nSetting up package documentation\n")
+    styler::style_pkg(style = styler::tidyverse_style, strict = T)
     devtools::document()
     rmarkdown::render("README.Rmd", output_format = "github_document")
     if (file.exists("README.html")) file.remove("README.html")

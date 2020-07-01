@@ -26,8 +26,7 @@ coerced to strings. This is useful inside functions to grab the
 variable name passed by the user
 }
 \examples{
-f <- function(input_argument)
-{
+f <- function(input_argument) {
   glue_abort("Error is with {input_argument}")
 }
 
@@ -36,7 +35,5 @@ x <- "Show My Name, Not My String"
 f(x)
 f("Show Me")
 }
-
-
 
 }

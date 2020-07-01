@@ -23,8 +23,7 @@ integers(x)
 A few additional functions to facilitate filtering of vectors
 }
 \examples{
-x <- seq(-3,3,0.5)
-
+x <- seq(-3, 3, 0.5)
 drop_zeros(x)
 positives(x)
 negatives(x)

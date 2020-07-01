@@ -20,10 +20,9 @@ update_my_package(
 If NULL, the current working directory will be used.}
 
 \item{git_message}{git commit message to be passed to the \code{git()} function.
-If no \code{git_message} is provided, then the update will not be commited. If
-\code{git_message} is supplied, then \code{devtools::check()} will be ran first.
-\code{git()} will not be ran if \code{check()} returns that there is something wrong
-with the package.}
+If no \code{git_message} is provided, then the update will not be commited.
+If \code{git_message} is supplied, then it will be used as the
+\verb{git commit} message if used.}
 
 \item{update_type}{what level of update version to use.
 Accepts \code{"major"}, \code{"minor"},\code{"patch"}, or \code{"dev"}. Uses \code{"dev"} as default.}
@@ -40,7 +39,7 @@ and/or upload it via a \verb{git commit} command (after appropriate checks).
 \section{Functions}{
 \itemize{
 \item \code{reinstall_my_package}: performs a few functions to quickly and automatically
-update a package. It performs the following:
+update a package. In simple terms, it performs the following:
 \itemize{
 \item \code{devtools::document()}
 \item \code{rmarkdown::render("README.Rmd")}
@@ -48,7 +47,13 @@ update a package. It performs the following:
 \item \code{devtools::load_all()}
 }
 
-\item \code{update_my_package}: checks if a package will
-pass \verb{R CMD CHECK} and if it will, uploads it via a git command
+\item \code{update_my_package}: is much more thorough than
+\code{reinstall_my_package()}. It also ensures the package files are
+styled according to the tidyverse style guide (essential as per
+\code{usethis::use_tidy_style(strict=T)}. It then performs an \verb{R CMD CHECK}
+on the package to ensure it works robustly. If the check passes
+(i.e. it doesn't throw an Error, Warning or Note), then it will
+update the package version (in the \code{DESCRIPTION} file), and then
+\code{commit} and \code{push} the package to \code{git}.
 }}
 

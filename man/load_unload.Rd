@@ -21,10 +21,8 @@ reload_packages(...)
 Then loads them ready for use. \code{unload_packages} unloads packages, see \code{\link{detach}}
 }
 \examples{
-load_packages(magrittr,purrr,stringi,lubridate)
-unload_packages(magrittr,purrr)
+load_packages(magrittr, purrr, stringi, lubridate)
+unload_packages(magrittr, purrr)
 
-reload_packages(stringi,lubridate)
-
-
+reload_packages(stringi, lubridate)
 }

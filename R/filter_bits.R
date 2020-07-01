@@ -10,34 +10,29 @@
 #' vector of numerics to be filtered
 #'
 #' @examples
-#' x <- seq(-3,3,0.5)
-#'
-
+#' x <- seq(-3, 3, 0.5)
 NULL
 
 #' @rdname filter_bits
 #' @export
 #' @examples
 #' drop_zeros(x)
-drop_zeros <- function(x) x[x!=0]
+drop_zeros <- function(x) x[x != 0]
 
 #' @rdname filter_bits
 #' @export
 #' @examples
 #' positives(x)
-positives <- function(x) x[x>0]
+positives <- function(x) x[x > 0]
 
 #' @rdname filter_bits
 #' @export
 #' @examples
 #' negatives(x)
-negatives <- function(x) x[x<0]
+negatives <- function(x) x[x < 0]
 
 #' @rdname filter_bits
 #' @export
 #' @examples
 #' integers(x)
-integers <- function(x) x[x%%1 == 0]
-
-
-
+integers <- function(x) x[x %% 1 == 0]

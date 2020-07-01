@@ -24,8 +24,7 @@
 #' @export
 #'
 #' @examples
-#' f <- function(input_argument)
-#' {
+#' f <- function(input_argument) {
 #'   glue_abort("Error is with {input_argument}")
 #' }
 #'
@@ -35,20 +34,19 @@
 #' f("Show Me")
 #' }
 #'
-#'
-#'
-
-glue_abort <- function(msg,...,sub=T){
-  if(sub)
-    msg <- gsub("\\{(.*?)\\}","{rlang::as_label(substitute(\\1))}",msg)
-  rlang::abort(glue::glue(msg,.envir=rlang::caller_env()),...)
+glue_abort <- function(msg, ..., sub = T) {
+  if (sub) {
+    msg <- gsub("\\{(.*?)\\}", "{rlang::as_label(substitute(\\1))}", msg)
+  }
+  rlang::abort(glue::glue(msg, .envir = rlang::caller_env()), ...)
 }
 
 #' @rdname glue_abort
 #' @export
 
-glue_warn <- function(msg,...,sub=T){
-  if(sub)
-    msg <- gsub("\\{(.*?)\\}","{rlang::as_label(substitute(\\1))}",msg)
-  rlang::warn(glue::glue(msg,.envir=rlang::caller_env()),...)
+glue_warn <- function(msg, ..., sub = T) {
+  if (sub) {
+    msg <- gsub("\\{(.*?)\\}", "{rlang::as_label(substitute(\\1))}", msg)
+  }
+  rlang::warn(glue::glue(msg, .envir = rlang::caller_env()), ...)
 }

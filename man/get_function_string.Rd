@@ -14,11 +14,11 @@ Extracts the details of a function as either it's name, or
 (if anonymous), some minimal details about it.
 }
 \examples{
-f <- function(x) x+1
+f <- function(x) x + 1
 
 get_function_string(f)
 get_function_string(
-  function(x) x+1
+  function(x) x + 1
 )
 get_function_string(
   function(x) mean(1:10)
@@ -27,26 +27,27 @@ get_function_string(
   function(x) stats::mean(1:10)
 )
 get_function_string(
-  function(x) (x+1)
+  function(x) (x + 1)
 )
 get_function_string(
-  function(x) (3*x+1)/2
+  function(x) (3 * x + 1) / 2
 )
 get_function_string(
-  function(x){
-  x+2
-})
+  function(x) {
+    x + 2
+  }
+)
 get_function_string(
-  function(x){
-  y <- x+2
-  x+y
-})
+  function(x) {
+    y <- x + 2
+    x + y
+  }
+)
 get_function_string(
-  function(x){
-  y <- x+2
-  x+y
-  y^2
-})
-
-
+  function(x) {
+    y <- x + 2
+    x + y
+    y^2
+  }
+)
 }

@@ -13,11 +13,11 @@
 #' @export
 #'
 #' @examples
-#' f <- function(x) x+1
+#' f <- function(x) x + 1
 #'
 #' get_function_string(f)
 #' get_function_string(
-#'   function(x) x+1
+#'   function(x) x + 1
 #' )
 #' get_function_string(
 #'   function(x) mean(1:10)
@@ -26,52 +26,60 @@
 #'   function(x) stats::mean(1:10)
 #' )
 #' get_function_string(
-#'   function(x) (x+1)
+#'   function(x) (x + 1)
 #' )
 #' get_function_string(
-#'   function(x) (3*x+1)/2
+#'   function(x) (3 * x + 1) / 2
 #' )
 #' get_function_string(
-#'   function(x){
-#'   x+2
-#' })
+#'   function(x) {
+#'     x + 2
+#'   }
+#' )
 #' get_function_string(
-#'   function(x){
-#'   y <- x+2
-#'   x+y
-#' })
+#'   function(x) {
+#'     y <- x + 2
+#'     x + y
+#'   }
+#' )
 #' get_function_string(
-#'   function(x){
-#'   y <- x+2
-#'   x+y
-#'   y^2
-#' })
-#'
-#'
-get_function_string <- function(f){
-  if(!rlang::is_function(f))
+#'   function(x) {
+#'     y <- x + 2
+#'     x + y
+#'     y^2
+#'   }
+#' )
+get_function_string <- function(f) {
+  if (!rlang::is_function(f)) {
     glue_abort("{f} must be a function")
+  }
   sub_f <- substitute(f)
-  if(is.symbol(sub_f)){
+  if (is.symbol(sub_f)) {
     rlang::as_label(sub_f)
   } else {
     body_f <- body(f)
-    if(body_f[[1]] == "{") {
-      if(length(body_f) == 1) {
+    if (body_f[[1]] == "{") {
+      if (length(body_f) == 1) {
         "{ }"
-      } else if(length(body_f) == 2) {
-        paste0("{ ",
-               rlang::as_label(body_f[[2]]),
-               " }")
-      } else if(length(body_f) == 3) {
-        paste0("{ ",
-               rlang::as_label(body_f[[2]]),"; ",
-               rlang::as_label(body_f[[3]]),
-               " }")
+      } else if (length(body_f) == 2) {
+        paste0(
+          "{ ",
+          rlang::as_label(body_f[[2]]),
+          " }"
+        )
+      } else if (length(body_f) == 3) {
+        paste0(
+          "{ ",
+          rlang::as_label(body_f[[2]]), "; ",
+          rlang::as_label(body_f[[3]]),
+          " }"
+        )
       } else {
-        paste0("{ ",
-               rlang::as_label(body_f[[2]]),
-               "; ... }")
+        paste0(
+          "{ ",
+          rlang::as_label(body_f[[2]]),
+          "; ... }"
+        )
       }
     } else {
       rlang::as_label(body(f))

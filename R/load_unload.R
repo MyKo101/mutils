@@ -13,26 +13,23 @@
 #' @export
 #'
 #' @examples
-#' load_packages(magrittr,purrr,stringi,lubridate)
-#' unload_packages(magrittr,purrr)
+#' load_packages(magrittr, purrr, stringi, lubridate)
+#' unload_packages(magrittr, purrr)
 #'
-#' reload_packages(stringi,lubridate)
-#'
-#'
+#' reload_packages(stringi, lubridate)
 load_packages <- function(...) {
   quo_pkgs <- as.list(enquos(...))
-  pkgs <- vapply(quo_pkgs,as_name,character(1))
+  pkgs <- vapply(quo_pkgs, as_name, character(1))
   already_installed_list <- rownames(utils::installed.packages())
   already_installed <- pkgs %in% already_installed_list
 
   if (any(!already_installed)) {
     tryCatch(utils::install.packages(pkgs[!already_installed]),
-      error = utils::install.packages(pkgs[!already_installed], repos =  getOption("repos"))
+      error = utils::install.packages(pkgs[!already_installed], repos = getOption("repos"))
     )
   }
 
-  res <- lapply(pkgs,library,character.only=T,warn.conflicts=F)
-
+  res <- lapply(pkgs, library, character.only = T, warn.conflicts = F)
 }
 
 #' @rdname load_unload
@@ -40,10 +37,10 @@ load_packages <- function(...) {
 
 unload_packages <- function(...) {
   quo_pkgs <- as.list(enquos(...))
-  pkgs <- vapply(quo_pkgs,as_name,character(1))
+  pkgs <- vapply(quo_pkgs, as_name, character(1))
   pkgs <- paste0("package:", pkgs)
 
-  res <- invisible(lapply(pkgs,detach, character.only = T, unload = T))
+  res <- invisible(lapply(pkgs, detach, character.only = T, unload = T))
 }
 
 
