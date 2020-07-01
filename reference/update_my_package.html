@@ -81,7 +81,7 @@ and/or upload it via a git commit command (after appropriate checks)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9018</span>
       </span>
     </div>
 
@@ -148,10 +148,9 @@ If NULL, the current working directory will be used.</p></td>
     <tr>
       <th>git_message</th>
       <td><p>git commit message to be passed to the <code>git()</code> function.
-If no <code>git_message</code> is provided, then the update will not be commited. If
-<code>git_message</code> is supplied, then <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code> will be ran first.
-<code>git()</code> will not be ran if <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code> returns that there is something wrong
-with the package.</p></td>
+If no <code>git_message</code> is provided, then the update will not be commited.
+If <code>git_message</code> is supplied, then it will be used as the
+<code>git commit</code> message if used.</p></td>
     </tr>
     <tr>
       <th>update_type</th>
@@ -174,14 +173,20 @@ Accepts <code>"major"</code>, <code>"minor"</code>,<code>"patch"</code>, or <cod
     
 <ul>
 <li><p><code>reinstall_my_package</code>: performs a few functions to quickly and automatically
-update a package. It performs the following:</p><ul>
+update a package. In simple terms, it performs the following:</p><ul>
 <li><p><code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code></p></li>
 <li><p><code><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>rmarkdown::render("README.Rmd")</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/install.html'>devtools::install()</a></code></p></li>
 <li><p><code><a href='https://devtools.r-lib.org//reference/load_all.html'>devtools::load_all()</a></code></p></li>
 </ul></li>
-<li><p><code>update_my_package</code>: checks if a package will
-pass <code>R CMD CHECK</code> and if it will, uploads it via a git command</p></li>
+<li><p><code>update_my_package</code>: is much more thorough than
+<code>reinstall_my_package()</code>. It also ensures the package files are
+styled according to the tidyverse style guide (essential as per
+<code><a href='https://usethis.r-lib.org/reference/tidyverse.html'>usethis::use_tidy_style(strict=T)</a></code>. It then performs an <code>R CMD CHECK</code>
+on the package to ensure it works robustly. If the check passes
+(i.e. it doesn't throw an Error, Warning or Note), then it will
+update the package version (in the <code>DESCRIPTION</code> file), and then
+<code>commit</code> and <code>push</code> the package to <code>git</code>.</p></li>
 </ul>
 
   </div>
