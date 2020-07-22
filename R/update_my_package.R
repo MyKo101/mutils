@@ -149,6 +149,7 @@ update_my_package <- function(git_message = NULL, update_type = "dev",
       tryCatch(
         {
           git("add -A", git_commit, "push")
+          message("\n\nUpdating package to Git was successful")
         },
         error = function(e) {
           Set_Version(Version = versions$old)

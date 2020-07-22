@@ -39,6 +39,7 @@ unload_packages <- function(...) {
   quo_pkgs <- as.list(enquos(...))
   pkgs <- vapply(quo_pkgs, as_name, character(1))
   pkgs <- paste0("package:", pkgs)
+  pkgs <- pkgs[pkgs %in% search()]
 
   res <- invisible(lapply(pkgs, detach, character.only = T, unload = T))
 }

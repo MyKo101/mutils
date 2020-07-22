@@ -1,8 +1,8 @@
 Package: mutils
 Type: Package
 Title: Various utility functions to make data processing smoother
-Version: 0.0.0.9018
-Date: 2020-07-01
+Version: 0.0.0.9019
+Date: 2020-07-22
 URL: https://michaelbarrowman.co.uk/mutils, https://github.com/MyKo101/mutils
 Authors@R: 
     person(given = "Michael",
@@ -18,7 +18,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0.9000
+RoxygenNote: 7.1.1
 Imports: 
     lubridate,
     magrittr,
@@ -27,13 +27,16 @@ Imports:
     rlang (>= 0.1.2),
     stringi,
     glue,
-    styler
+    styler,
+    palmerpenguins,
+    tibble
 Suggests: 
     knitr,
     rmarkdown,
     dplyr,
     ggplot2,
-    tibble,
     roxygen2,
     testthat
 VignetteBuilder: knitr
+Remotes:
+    allisonhorst/palmerpenguins
