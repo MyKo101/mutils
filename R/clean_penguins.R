@@ -9,6 +9,8 @@
 #' `sex`, `island`, `bill_length` and `bill_depth` (without the
 #' units as in the original dataset)
 #'
+#' @export
+#'
 clean_penguins <- function() {
   keep_vars <- c(
     "species", "sex", "island",

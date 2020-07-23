@@ -8,7 +8,7 @@
 [![R build
 status](https://github.com/MyKo101/mutils/workflows/R-CMD-check/badge.svg)](https://github.com/MyKo101/mutils/actions)
 [![Version
-Badge](https://img.shields.io/badge/Version-0.0.0.9020-orange.svg)](https://github.com/MyKo101/mutils)
+Badge](https://img.shields.io/badge/Version-0.0.0.9021-orange.svg)](https://github.com/MyKo101/mutils)
 
 <!-- badges: end -->
 
