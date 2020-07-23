@@ -81,7 +81,7 @@ to use this within a pipeline." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9018</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9020</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@ to use this within a pipeline." />
 to use this within a pipeline.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>table</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,13 +149,13 @@ to be evaluated</p></td>
   x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>, <span class='st'>"a"</span>),
   y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>"d"</span>, <span class='st'>"c"</span>, <span class='st'>"d"</span>, <span class='st'>"c"</span>, <span class='st'>"d"</span>, <span class='st'>"c"</span>, <span class='st'>"d"</span>, <span class='st'>"c"</span>)
 )
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>x</span>, <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>y</span>)</div><div class='output co'>#&gt;    
+<span class='fu'>table</span>(<span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>x</span>, <span class='kw'>tbl</span><span class='op'>$</span><span class='kw'>y</span>)</div><div class='output co'>#&gt;    
 #&gt;     c d
 #&gt;   a 3 2
-#&gt;   b 2 2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='kw'>tbl</span>, <span class='kw'>x</span>, <span class='kw'>y</span>)</div><div class='output co'>#&gt;    y
+#&gt;   b 2 2</div><div class='input'><span class='fu'>table</span>(<span class='kw'>tbl</span>, <span class='kw'>x</span>, <span class='kw'>y</span>)</div><div class='output co'>#&gt;    y
 #&gt; x   c d
 #&gt;   a 3 2
-#&gt;   b 2 2</div><div class='input'><span class='kw'>tbl</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>)</div><div class='output co'>#&gt;    y
+#&gt;   b 2 2</div><div class='input'><span class='kw'>tbl</span> <span class='op'>%&gt;%</span> <span class='fu'>table</span>(<span class='kw'>x</span>, <span class='kw'>y</span>)</div><div class='output co'>#&gt;    y
 #&gt; x   c d
 #&gt;   a 3 2
 #&gt;   b 2 2</div></pre>
